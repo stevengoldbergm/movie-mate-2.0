@@ -1,9 +1,9 @@
 const {Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection')
 
-class Review extends Model {}
+class User extends Model {}
 
-Review.init(
+User.init(
     {
         id: {
         type: DataTypes.INTEGER,
@@ -11,21 +11,19 @@ Review.init(
         primaryKey: true,
         autoIncrement: true,
       },
-    //   Foreign Key to link to user
-      user_id: {
-        type: DataTypes.INTEGER,
+      username: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
-    //   Foreign Key to link to movie
-      movie_id: {
-        type: DataTypes.INTEGER,
+      email: {
+        type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+            isEmail: true,
+            msg: 'Must be an eamil.'
+        }
       },
-      review_score: {
-        type: DataTypes.DECIMAL,
-        allowNull: false,
-      },
-      review_text: {
+      password: {
         type: DataTypes.STRING,
         allowNull: false,
       }
@@ -35,8 +33,8 @@ Review.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'review',
+        modelName: 'user',
       }
 )
 
-module.exports = Review;
+module.exports = User;

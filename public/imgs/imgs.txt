@@ -1,7 +1,4 @@
 Put images here
-<<<<<<< HEAD
 
 chayannes branch test
-=======
 - Steve was here
->>>>>>> e1f83fc4d2c05604eea970436a7e021aa527da87

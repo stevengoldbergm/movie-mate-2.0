@@ -1,6 +1,9 @@
 // Import express
 const express = require('express');
 const app = express();
+const path = require('path')
+const routes = require('./controllers')
+const helpers = require('./utils/helpers')
 
 // Define port value
 const PORT = process.env.PORT || 3001;;
@@ -22,8 +25,11 @@ app.use(express.static('public'));
 app.get('/', (req, res) => {
     // res.send('index') // sends the index.html file from Public (not necessary anymore)
     // res.render('main', { layout: 'index' });
-    res.render('main'); // I no longer have to specify the layout, since the default layout is set above! I can still set specific layouts if desired
+    res.render('main', { search: true }); // I no longer have to specify the layout, since the default layout is set above! I can still set specific layouts if desired
 });
+
+// Enables use of api routes
+app.use(routes);
 
 // Listen for the PORT
 app.listen(PORT, () => {

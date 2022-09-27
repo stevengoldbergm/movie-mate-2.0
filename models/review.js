@@ -15,11 +15,19 @@ Review.init(
       user_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        references: {
+          model: 'user',
+          key: 'id'
+        }
       },
     //   Foreign Key to link to movie
       movie_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        references: {
+          model: 'movie',
+          key: 'id'
+        }
       },
       review_score: {
         type: DataTypes.DECIMAL,

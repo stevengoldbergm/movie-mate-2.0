@@ -36,55 +36,9 @@
                         Search for movies - Get the details!
                     </h2>
                     
-                    <!-- Search/History buttons start -->
-                    <header class="columns">
-                        <section class="column is-one-fifth is-hidden-mobile"></section>
-
-                        <section class="column is-three-fifths is-12-mobile">
-                            <form id='srch-form' action="">
-                                <p class="control center" >
-                                    <input class="input" id='srch-title' type="text" placeholder="Movie Title" autocomplete="off">
-                                </p>
-                                <br>
-                                <!-- Search Button -->
-                                <section>
-                                    <button class="button is-info is-light has-text-black">
-                                        Search Movies
-                                    </button>
-
-                                    <!-- Dropdown Start -->
-                                    <div class="dropdown is-hoverable">
-                                        <div class="dropdown-trigger">
-                                            <div class="has-background-info-light has-text-black is-normal p-2 ml-1 is-size-6 is-roundeds" aria-haspopup="true" aria-controls="dropdown-menu3" disabled="true">
-                                                <span>Search History</span>
-                                                <span class="icon is-small">
-                                                    <i class="fas fa-angle-down" aria-hidden="true"></i>
-                                                </span>
-                                            </div>
-                                        </div>
-        
-                                        <div class="dropdown-menu" id="dropdown-menu3" role="menu">
-                                            <div class="dropdown-content">
-                            
-                                                <hr class="dropdown-divider">
-
-                                                <!-- Make the clear history button here -->
-                                                <a onclick="clearLocalStorage()" href="#" class="dropdown-item">
-                                                Clear History
-                                                </a>
-        
-                                            </div>
-                                        </div>
-                                      </div>
-
-                                </section>
-
-                            </form>
-
-                        </section>
-
-                        <section class="column is-one-fifth is-hidden-mobile"></section>
-                    </header>
+                    {{#if search}}
+                    {{> searchbar }}
+                    {{/if}}
 
                 </div>
             </div>

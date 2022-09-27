@@ -1,3 +1,44 @@
+/* This is our CSS page */
+html,body {
+    margin:0;
+    padding:0;
+    overflow-x: visible;
+    }
+
+.tangerine {
+    font-family: 'Tangerine', serif;
+    font-size: 48px;
+}
+
+.papyrus {
+    font-family: 'Papyrus';
+    font-size: 40px;
+}
+
+.courier-new {
+    font-family: 'courier-new';
+}
+
+.fantasy {
+    font-family: 'Luminari, fantasy';
+}
+
+.typewriter {
+    font-family: 'American Typewriter, serif';
+}
+
+.optima {
+    font-family: 'Optima, sans-serif';
+}
+
 .hide {
     display: none;
+}
+
+.no-margins {
+    margin: 0px;
+}
+
+.is-roundeds {
+    border-radius: 5px;
 }

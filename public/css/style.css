@@ -44,5 +44,10 @@ html,body {
 }
 
 .is-fullheight {
-    height: 100%;
+    height: 100vh;
+}
+
+.max {
+    max-width: 640px;
+    max-height: 360px;
 }

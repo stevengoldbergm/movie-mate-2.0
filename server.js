@@ -1,16 +1,20 @@
 // Import express
-const express = require('express');
-const app = express();
 const path = require('path')
+const express = require('express');
+// PLACEHOLDER: const session = require('express-session');
+const handlebars = require('express-handlebars');
 const routes = require('./controllers')
-const helpers = require('./utils/helpers')
+// PLACEHOLDER: const helpers = require('./utils/helpers')
+
+const sequelize = require('./config/connection');
+// PLACEHOLDER: const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 // Define port value
+const app = express();
 const PORT = process.env.PORT || 3001;;
 
-// Import handlebars
-const handlebars = require('express-handlebars');
 // Set the view engine to handlebars
+// note to review with team
 app.set('view engine', 'hbs');
 app.engine('hbs', handlebars({
     layoutsDir: `${__dirname}/views/layouts`,
@@ -19,6 +23,8 @@ app.engine('hbs', handlebars({
 }));
 
 // Define static content
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 // Simple GET check
@@ -32,6 +38,6 @@ app.get('/', (req, res) => {
 app.use(routes);
 
 // Listen for the PORT
-app.listen(PORT, () => {
-    console.log(`App listening on port# ${PORT}!`)
-});
+sequelize.sync({ force: false }).then(() => {
+    app.listen(PORT, () => console.log(`App listening on port# ${PORT}!`));
+  });

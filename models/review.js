@@ -17,7 +17,8 @@ Review.init(
         allowNull: false,
         references: {
           model: 'user',
-          key: 'id'
+          key: 'id',
+          unique: false
         }
       },
     //   Foreign Key to link to movie
@@ -26,7 +27,8 @@ Review.init(
         allowNull: false,
         references: {
           model: 'movie',
-          key: 'id'
+          key: 'id',
+          unique: false
         }
       },
       review_score: {

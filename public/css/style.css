@@ -42,3 +42,7 @@ html,body {
 .is-roundeds {
     border-radius: 5px;
 }
+
+.is-fullheight {
+    height: 100%;
+}

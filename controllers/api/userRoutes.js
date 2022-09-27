@@ -1,37 +1,43 @@
 const router = require('express').Router();
 const { User, Review } = require('../../models');
-const withAuth = require('../../utils/auth');
 
 
-
-router.post('/', withAuth, async (req, res) => {
+// get route for testing to be moved
+router.get('/', async (req,res) => {
   try {
-    const newProject = await Project.create({
-      ...req.body,
-      // placeholder for use ID from session: user_id: req.session.user_id,
+    const userData = await User.findAll({
+      include: [Review],
     });
+  res.status(200).json(userData)
+} catch (err) {
+  res.status(500).json(err)
+}
+});
 
-    res.status(200).json(newProject);
+router.post('/', async (req, res) => {
+  try {
+    const newUser = await User.create(req.body)
+    res.status(200).json(newUser);
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
-router.delete('/:id', withAuth, async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
-    const projectData = await Project.destroy({
+    const userData = await User.destroy({
       where: {
         id: req.params.id,
         // placeholder for use ID from session: user_id: req.session.user_id,
       },
     });
 
-    if (!projectData) {
-      res.status(404).json({ message: 'No project found with this id!' });
+    if (!userData) {
+      res.status(404).json({ message: 'No user found with this id!' });
       return;
     }
 
-    res.status(200).json(projectData);
+    res.status(200).json(userData);
   } catch (err) {
     res.status(500).json(err);
   }

@@ -20,7 +20,6 @@ User.init(
         allowNull: false,
         validate: {
             isEmail: true,
-            msg: 'Must be an eamil.'
         }
       },
       password: {

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Review } = require('../../models');
+const { User, Review, Movie } = require('../../models');
 // Placeholder for future authenticaion with passport. Will need to add to post and delte routes below. 
 const withAuth = require('../../utils/auth');
 
@@ -7,7 +7,7 @@ const withAuth = require('../../utils/auth');
 router.get('/', async (req,res) => {
   try {
     const reviewData = await Review.findAll({
-      include: [{ model: User,}],
+      include: [User, Movie],
     });
   res.status(200).json(reviewData)
 } catch (err) {

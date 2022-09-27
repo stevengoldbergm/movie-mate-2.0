@@ -22,7 +22,7 @@ app.use(express.static('public'));
 app.get('/', (req, res) => {
     // res.send('index') // sends the index.html file from Public (not necessary anymore)
     // res.render('main', { layout: 'index' });
-    res.render('main', { search: false }); // I no longer have to specify the layout, since the default layout is set above! I can still set specific layouts if desired
+    res.render('movieDetails', { search: false }); // I no longer have to specify the layout, since the default layout is set above! I can still set specific layouts if desired
 });
 
 // Listen for the PORT

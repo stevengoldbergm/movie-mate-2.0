@@ -1,2 +1,2 @@
-DROP DATABASE IF EXISTS moviemate_db;
-CREATE DATABASE crowdfund_db;
+DROP DATABASE IF EXISTS movie_db;
+CREATE DATABASE movie_db;

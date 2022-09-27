@@ -1,6 +1,18 @@
-{{!-- Main data --}}
-{{!-- Box 1 = Poster/movie details --}}
-{{!-- Box 2 = Youtube Video (make smaller) --}}
 
-{{!-- Add partial --}}
-    {{!-- If reviewdata exists, add movie reviews partial --}}
+{{!-- Main data --}}
+<main>
+    <section id="main-data" class="columns is-multiline">
+            <!-- Column 1 -->
+            <!-- This is a spacer -->
+            <div class="column is-1 is-hidden-mobile has-background-info">
+            </div>
+
+            {{> details }}
+
+            <!-- Column 3 -->
+            <!-- This is a spacer -->
+            <div class="column is-1 is-hidden-mobile has-background-info bot-layer ml-5">
+            </div>
+
+    </section>
+</main>

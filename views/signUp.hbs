@@ -1,55 +1,13 @@
-{{!-- Table for log-in --}}
+{{!-- Table for sign up --}}
 
-<section class="hero is-info is-fullheight-with-navbar block">
-    <div class="hero-head">
-        <nav class="navbar card">
-            <div class="container">
-                <div class="navbar-brand is-size-4">
-                    <a class="navbar-item p-4">
-                        <h1 class="title has-text-white animate__animated animate__rubberband p-3">
-                        <span class="icon is-small mr-5">
-                            <i class="fas fa-ticket-alt"></i>
-                        </span>
-                            MovieMate    
-                        <span class="icon is-small ml-5">
-                            <i class="fas fa-ticket-alt"></i>
-                        </span>
-                        </h1>
-                    </a>
-                    <span class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenuHeroB">
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                    </span>
-                </div>
-            </div>
-            <div id="navbarMenuHeroB" class="navbar-menu">
-                <div class="navbar-end">
-                  <a class="navbar-item is-active" href="#homepage">
-                    Home
-                  </a>
-                  <a class="navbar-item" href="#movieDetails">
-                    Movie Details
-                  </a>
-                  <a class="navbar-item" href="#login">
-                    Login
-                  </a>
-                  <a class="navbar-item" href="#profile">
-                    Profile
-                  </a>
-                </div>
-        </nav>
-            </div>
-    </div>
-
-    <!-- login -->
+   <!-- sign in -->
     <div class="hero is-info is-fullheight">
         <div class="hero-body">
             <div class="container">
                 <div class="columns is-centered">
                     <div class="column is-4">
                         <form action="" class="box">
-                            <h1 class="py-2">Login Here:</h1>
+                            <h1 class="py-2">Sign Up Here:</h1>
                             <div class="field">
                                 <label class="label">
                                     Email
@@ -62,9 +20,29 @@
                                 </div>
                             </div>
                             <div class="field">
+                                <label class="label">
+                                    Username
+                                </label>
+                                <div class="control has-icons-left">
+                                    <input type="username" class="input" placeholder="Must be 8-10 characters">
+                                    <span class="icon is-small is-left">
+                                        <i class=" fa fa-regular fa-user"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="field">
                                 <label class="label">Password</label>
                                 <div class="control has-icons-left">
                                     <input type="password" class="input" placeholder="Enter Password Here">
+                                    <span class="icon is-small is-left">
+                                        <i class="fa fa-regular fa-key"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label">Confirm Password</label>
+                                <div class="control has-icons-left">
+                                    <input type="password" class="input" placeholder="Re-type Password Here">
                                     <span class="icon is-small is-left">
                                         <i class="fa fa-lock"></i>
                                     </span>
@@ -77,10 +55,11 @@
                                 </label>
                             </div>
                             <div class="field">
-                                <button class="button is-info">Login</button>
+                                <button class="button is-info is-fullwidth">Create Account</button>
                             </div>
-                            <div class="field">
-                                <button class="button is-info">Sign Up</button>
+                            <div class="has-text-centered">
+                                <p class="is-size-7"> Already have an account? <a href="#" class="has-text-info">Login!</a>
+                                </p>
                             </div>
                         </form>
                     </div>

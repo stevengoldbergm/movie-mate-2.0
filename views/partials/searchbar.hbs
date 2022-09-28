@@ -47,3 +47,15 @@
 
         <section class="column is-one-fifth is-hidden-mobile"></section>
     </header>
+
+    <div class="modal {{#if active}}is-active{{/if}} ">
+        <div class="modal-background"></div>
+        <div class="modal-content has-background-white p-5 is-roundeds">
+        <!-- Any other Bulma elements you want -->
+            <h3 class="title mb-6">Search Results</h3>
+            {{#each movies as |movie|}}
+            
+            {{/each}}
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>

@@ -4,6 +4,12 @@ const express = require('express');
 // PLACEHOLDER: const session = require('express-session');
 const handlebars = require('express-handlebars');
 const routes = require('./controllers')
+
+// Required for authentication:
+var passport = require('passport');
+var session = require('express-session');
+
+var SQLiteStore = require('connect-sqlite3')(session);
 // PLACEHOLDER: const helpers = require('./utils/helpers')
 
 const sequelize = require('./config/connection');
@@ -28,6 +34,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
+// Used for authenication
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false,
+    store: new SQLiteStore({ db: 'sessions.db', dir: './var/db' })
+  }));
+  app.use(passport.authenticate('session'));
+  
 app.use(routes);
 
 // Listen for the PORT

@@ -24,19 +24,22 @@ router.get('/movie-details', (req, res) => {
 
     // res.send('index') // sends the index.html file from Public (not necessary anymore)
     // res.render('main', { layout: 'index' });
-    res.render('movieDetails', { search: true, movieData }); // I no longer have to specify the layout, since the default layout is set above! I can still set specific layouts if desired
+    res.render('movieDetails', { search: true, movieDetails: true, movieData }); // I no longer have to specify the layout, since the default layout is set above! I can still set specific layouts if desired
 });
 
+// User profile page
 router.get('/profile', (req, res) => {
-    res.render('profile', { search: false })
+    res.render('profile', { layout: 'user', search: false,  })
 });
 
+// User sign-up page
 router.get('/sign-up', (req, res) => {
-    res.render('signUp', { search: false })
+    res.render('signUp', { layout: 'user', search: false })
 });
 
+// User login page
 router.get('/login', (req, res) => {
-    res.render('login', { search: false })
+    res.render('login', { layout: 'user', search: false })
 });
 
 module.exports = router;

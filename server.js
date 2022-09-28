@@ -18,6 +18,7 @@ const PORT = process.env.PORT || 3001;;
 app.set('view engine', 'hbs');
 app.engine('hbs', handlebars({
     layoutsDir: `${__dirname}/views/layouts`,
+    partialsDir: `${__dirname}/views/partials`,
     extname: 'hbs',
     defaultLayout: 'index'
 }));

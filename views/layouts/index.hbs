@@ -20,13 +20,16 @@
   </head>
 
 <body class="has-background-white">
+
+    {{>navbar}}
+
      <!-- Add 3 img tags. Position = absolute top, left, and right. All images are movie theatre banners -->
     <header>
         <section class="background has-background-info hero has-text-centered pt-6">
             <div class="hero-body">
                 <div class="container">
                     <!-- Title banner for app -->
-                    <h1 class="title tangerine has-text-white">
+                    {{!-- <h1 class="title tangerine has-text-white">
                         <span class="icon is-small mr-5">
                             <i class="fas fa-ticket-alt"></i>
                         </span>
@@ -34,14 +37,14 @@
                         <span class="icon is-small ml-5">
                             <i class="fas fa-ticket-alt"></i>
                         </span>
-                    </h1>
+                    </h1> --}}
 
                     <h2 class="subtitle has-text-white">
                         Search for movies - Get the details!
                     </h2>
                     
                     {{#if search}}
-                    {{> searchbar }}
+                        {{> searchbar }}
                     {{/if}}
 
                 </div>
@@ -50,10 +53,16 @@
     </header>
     {{{body}}}
 
+    {{#if movieDetails}}
+        {{>footerDetails}}
+    {{else}}
+        {{>footer}}
+    {{/if}}
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
-<script src="../../public/js/script.js"></script>
+<script src="/js/index.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 
 {{!-- handlebars script tag? --}}

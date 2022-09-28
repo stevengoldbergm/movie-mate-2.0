@@ -91,26 +91,98 @@ async function modalSearch(event) {
   document.querySelector(".modal").classList.add('is-active');
 }
 
+// Define the movie searchbar object
+const searchEl = document.querySelector("#srch-title");
+
+// Search OMDB using search bar value
 async function searchOMDB() {
   // Set up the search parameters
-  const searchEl = document.querySelector("#srch-title");
   const searchValue = searchEl.value;
   const searchResult = omdbSearch + searchValue + omdbType + OMDbApiKey
 
   // Start search
   const response = await fetch(searchResult)
   const data = await response.json();
-  return data.Search;
   
-  // fetch(searchResult)
-  // .then((res) => {
-  //   console.log("response", res);
-  //   console.log("response status: ", res.status);
-  //   return res.json();
-  // })
-  // .then((data) => {
-  //   // console.log("data", data) // Working
-  //   return data;
-  // })
 
+  // Add History Button
+
+  // Define Variables
+  var movieSave = searchEl.value
+  console.log("Movie save name: " + movieSave)
+  console.log("Storage Test: ", localStorage.getItem("MovieMate: " + movieSave), movieSave)
+
+  // Don't add history button if local storage already exists
+  if (!localStorage.getItem("MovieMate: " + movieSave)) {
+    // If no local storage, then:
+    localStorage.setItem("MovieMate: " + movieSave, movieSave)
+    console.log(localStorage.getItem("MovieMate: " + movieSave))  
+
+    var newLink = document.createElement("a");
+
+    newLink.classList.add("dropdown-item");
+    newLink.textContent = searchEl.value;
+    console.log(newLink.textContent)
+    console.log(newLink)
+    console.log(dropDownMenuContent)
+
+    dropDownMenuContent.prepend(newLink);
 }
+
+  // Return list of movie objects based on search parameters
+  return data.Search; 
+}
+
+
+// ---------- Search History Dropdown ---------- //
+
+// Add event listeners to drop-down
+let dropDownMenuContent = document.querySelector('.dropdown-content')
+dropDownMenuContent.addEventListener("click", fillSearch);
+
+// Generate Search History on start-up
+function fillHistory() {
+  let keys = Object.keys(localStorage);
+  console.log(keys);
+
+  for (i = 0; i < keys.length; i++) {
+    // Make a new a object
+    var newLink = document.createElement("a");
+    newLink.classList.add("dropdown-item");
+    newLink.textContent = keys[i].substring(11);
+    console.log(newLink.textContent);
+    console.log(newLink);
+    console.log(dropDownMenuContent);
+    dropDownMenuContent.prepend(newLink);
+  } 
+}
+
+
+// Use search history buttons to enter search value, then pull movie data
+async function fillSearch (event) {
+  if(!event.target.textContent) {
+      return;
+  }
+
+  // console.log(event) // Working
+  // console.log(event.target) // Working
+  // console.log(event.target.textContent) // Working
+  searchEl.value = event.target.textContent;
+  hasHistory = true;
+  const searchData = await searchOMDB();
+  console.log(searchData);
+}
+
+// Function to clear local storage/search history
+function clearLocalStorage() {
+  localStorage.clear();
+  location.reload();
+}
+
+// ---------- Initialize the App ---------- //
+function init() {
+  fillHistory();
+}
+
+init();
+

@@ -1,6 +1,6 @@
-const Movie = require('./Movie')
-const Review = require('./Review')
-const User = require('./User')
+const Movie = require('./movie')
+const Review = require('./review')
+const User = require('./user')
 
 User.hasMany(Review,{
     foreignKey:'user_id',

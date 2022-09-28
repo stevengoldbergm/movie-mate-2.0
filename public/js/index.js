@@ -100,7 +100,7 @@ async function searchOMDB() {
   // Start search
   const response = await fetch(searchResult)
   const data = await response.json();
-  return data;
+  return data.Search;
   
   // fetch(searchResult)
   // .then((res) => {

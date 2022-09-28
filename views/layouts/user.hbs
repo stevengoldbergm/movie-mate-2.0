@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" class="has-background-info">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="Description" content="Enter your description here" />
+    {{!-- google fonts --}}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine&family=Open+Sans">
+    <!-- bulma css framework -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"/>
+    <!-- font awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <!-- amimation link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    {{!-- custom css --}}
+    <link rel="stylesheet" href="/css/style.css"/> 
+
+    <title id="web-title">Movie Mate</title>
+  </head>
+
+{{!-- Username --}}
+{{!-- Movie Reviews --}}
+
+<section class="hero is-white is-fullheight-with-navbar block">
+        <div class="hero-head">
+            <nav class="navbar card">
+                <div class="container">
+                    <div class="navbar-brand is-size-4 p-1">
+                        <a class="navbar-item p-3">
+                            <h1 class="title tangerine has-text-info animate__animated animate__rubberband p-3">
+                            <span class="icon is-small mr-5">
+                                <i class="fas fa-ticket-alt"></i>
+                            </span>
+                                MovieMate    
+                            <span class="icon is-small ml-5">
+                                <i class="fas fa-ticket-alt"></i>
+                            </span>
+                            </h1>
+                        </a>
+                        <span class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenuHeroB">
+                            <span aria-hidden="true"></span>
+                            <span aria-hidden="true"></span>
+                            <span aria-hidden="true"></span>
+                        </span>
+                    </div>
+                </div>
+                <div id="navbarMenuHeroB" class="navbar-menu">
+                    <div class="navbar-end">
+                    <a class="navbar-item" href="/">
+                        Movie Search
+                    </a>
+                    {{!-- Hide if signed in --}}
+                    <a class="navbar-item" href="/login">
+                        Login
+                    </a>
+                    <a class="navbar-item" href="/sign-up">
+                        Sign Up
+                    </a>
+                    <a class="navbar-item" href="/profile">
+                        Profile
+                    </a>
+                </div>
+            </nav>
+        </div>
+
+    {{{body}}}
+
+<footer class="has-background-white has-text-centered has-text-black py-6">
+    <p>
+      Movie Mate 2.0© 
+    </p>
+    <div class="hero-foot is-borderless">
+        <nav class="tabs is-centered">
+            <div class="container">
+                <ul>
+                    <li>
+                        <a><i class="fab fa-github"></i></a>
+                    </li>
+                    <li>
+                        <a><i class="fab fa-facebook"></i></a>
+                    </li>
+                    <li>
+                        <a><i class="fab fa-instagram"></i></a>
+                    </li>
+                    <li>
+                        <a><i class="fab fa-twitter"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+  </footer>
+
+<script src="/js/index.js"></script>

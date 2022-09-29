@@ -33,6 +33,7 @@ app.engine('hbs', handlebars({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
+app.use(express.static('node_modules'));
 
 // Used for authenication
 app.use(session({

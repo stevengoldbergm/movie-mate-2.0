@@ -106,8 +106,11 @@ async function searchOMDB() {
   const searchResult = omdbSearch + searchValue + omdbType + OMDbApiKey
 
   // Start search
-  const response = await fetch(searchResult)
-  const data = await response.json();
+  const response = await axios.get(searchResult)
+  console.log(response);
+  
+  // const response = await fetch(searchResult);
+  // const data = await response.json();
   
 
   // Add History Button for search history
@@ -135,7 +138,8 @@ async function searchOMDB() {
 }
 
   // Return list of movie objects based on search parameters
-  return data.Search; 
+  return response.data.Search;
+  // return data.Search; 
 }
 
 

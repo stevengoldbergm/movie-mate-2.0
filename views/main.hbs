@@ -1,8 +1,45 @@
 {{!-- Search Bar --}}
 
 {{!-- Modal that pulls data from omdb search --}}
-
 <main class="is-fullheight has-background-white"></main>
+{{!-- {{#if results}} --}}
+    
+        <div class="p-4">
+            <div class="card events-card">
+                <header class="card-header ">
+                    <p class="card-header-title">
+                        Search Results
+                    </p>
+                </header>
+            <div class="card-table">
+            <table class="table is-fullwidth is-striped">
+                <tbody>
+                    
 
-{{!-- <h1>This is the MAIN body!</h1>
-{{> partial1 }} --}}
+                    <tr>
+                        <td width="5%"><i class="fa fa-bell-o"></i></td>
+                        <td>Star Wars: Episode IV - A New Hope</td>
+                        <td>Released: 1977</td>
+                        <td class="level-right"><a class="button is-small is-info" >View Movie Details</a></td>
+                    </tr>
+                    <tr>
+                        <td width="5%"><i class="fa fa-bell-o"></i></td>
+                        <td>Star Wars: Episode V - The Empire Strikes Back</td>
+                        <td>Released: 1980</td>
+                        <td class="level-right"><a class="button is-small is-info">View Movie Details</a></td>
+                    </tr>
+                    <tr>
+                        <td width="5%"><i class="fa fa-bell-o"></i></td>
+                        <td>'Star Wars: Episode VI - Return of the Jedi'</td>
+                        <td>Released: 1983</td>
+                        <td class="level-right"><a class="button is-small is-info">View Movie Details</a></td>
+                    </tr>
+                    {{!-- {{>results}} --}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{{!-- {{/if}} --}}
+</main>
+

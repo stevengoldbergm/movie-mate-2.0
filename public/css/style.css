@@ -51,3 +51,8 @@ html,body {
     max-width: 640px;
     max-height: 360px;
 }
+
+.has-border-bottom {
+    border: 1px, solid, grey;
+    color: red;
+}

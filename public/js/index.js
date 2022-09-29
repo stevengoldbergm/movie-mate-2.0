@@ -1,9 +1,4 @@
-// Set up OMDB search options
-
-// OMDB Key Variables
-const omdbSearch = 'https://www.omdbapi.com/?s=' // change t to s if you want a list of similar movie names
-const OMDbApiKey = '&apikey=c26a6eef'
-const omdbType = '&type=movie'
+// ---------- Navigation Bar ---------- //
 
 // Add navbar functionality
 document.addEventListener('DOMContentLoaded', () => {
@@ -24,9 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
   
       });
     });
-  });
+});
 
-// Add modal functionality
+// ---------- Modal Controller ---------- //
+
+// Add modal functionality 
+  // Make into a new page later
 document.addEventListener('DOMContentLoaded', () => {
   // Functions to open and close a modal
   function openModal($el) {
@@ -91,6 +89,13 @@ async function modalSearch(event) {
   document.querySelector(".modal").classList.add('is-active');
 }
 
+// ---------- OMDB API ---------- //
+
+// OMDB Key Variables
+const omdbSearch = 'https://www.omdbapi.com/?s=' // change t to s if you want a list of similar movie names
+const OMDbApiKey = '&apikey=c26a6eef'
+const omdbType = '&type=movie'
+
 // Define the movie searchbar object
 const searchEl = document.querySelector("#srch-title");
 
@@ -105,7 +110,7 @@ async function searchOMDB() {
   const data = await response.json();
   
 
-  // Add History Button
+  // Add History Button for search history
 
   // Define Variables
   var movieSave = searchEl.value
@@ -160,15 +165,15 @@ function fillHistory() {
 
 // Use search history buttons to enter search value, then pull movie data
 async function fillSearch (event) {
-  if(!event.target.textContent) {
+  if(!event.target.textContent || (event.target.textContent.trim() == "Clear History")) {
       return;
   }
 
   // console.log(event) // Working
   // console.log(event.target) // Working
   // console.log(event.target.textContent) // Working
+
   searchEl.value = event.target.textContent;
-  hasHistory = true;
   const searchData = await searchOMDB();
   console.log(searchData);
 }

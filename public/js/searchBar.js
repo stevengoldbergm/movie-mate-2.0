@@ -102,7 +102,20 @@ async function fillSearch (event) {
 
   searchEl.value = event.target.textContent;
   const searchData = await searchOMDB();
-  console.log(searchData);
+  console.log(searchData); // Working
+
+  // Reload the page with new data
+  // Might be literally impossible. DOM build may be required. -__-
+
+//   axios
+//   .get('/', {
+//     search: false,
+//     searchData,
+//   })
+//   .then((res) => {
+//     console.log('this sucks')
+//   });
+
 }
 
 // Function to clear local storage/search history

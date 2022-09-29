@@ -1,4 +1,4 @@
-// ---------- Modal Controller ---------- //
+// ----------- Modal Controller ----------- //
 
 // Add modal functionality 
   // Make into a new page later

@@ -104,9 +104,51 @@ async function fillSearch (event) {
   const searchData = await searchOMDB();
   console.log(searchData); // Working
 
+  // Select the table body
+  const table = document.querySelector('#table-body');
   // Build out search results with DOM
-  
+  searchData.forEach((movie) => {
+    console.log('Starting')
+    // console.log(movie) // working
+    const {Title, Year, imdbID} = movie;
+    // console.log(Title, Year, imdbID); // Working
 
+    // Create row element
+    const rowEl = document.createElement('tr');
+    console.log(rowEl);
+
+    // create spacer element
+    const spacerEl = document.createElement('td');
+        spacerEl.style.width = "5%";
+    const spacerImage = document.createElement('i');
+        spacerImage.classList.add('fa', 'fa-bell-o');
+
+    spacerEl.append(spacerImage);
+
+    // Create Title element
+    const titleEl = document.createElement('td');
+        titleEl.innerHTML = Title;
+
+    // Create Year element
+    const yearEl = document.createElement('td');
+        yearEl.innerHTML = `Released: ${Year}` 
+
+    // Create redirect button
+    const buttonBoxEl = document.createElement('td');
+        buttonBoxEl.classList.add('level-right');
+    const buttonEl = document.createElement('a');
+        buttonEl.classList.add('button', 'is-small', 'is-info');
+        buttonEl.setAttribute('imdb-id', imdbID);
+        buttonEl.innerHTML = 'View Movie Details';
+        buttonEl.setAttribute('href', `/movie-details/${imdbID}`)
+
+    buttonBoxEl.append(buttonEl);
+    
+    // Append row to table
+    rowEl.append(spacerEl, titleEl, yearEl, buttonBoxEl);
+    table.append(rowEl);
+  })
+  
 }
 
 // Function to clear local storage/search history
@@ -119,7 +161,7 @@ function clearLocalStorage() {
 
 // OMDB Key Variables
 const omdbSearch = 'https://www.omdbapi.com/?s=' // change t to s if you want a list of similar movie names
-const OMDbApiKey = '&apikey=c26a6eef'
+const omdbApiKey = '&apikey=c26a6eef'
 const omdbType = '&type=movie'
 
 // Define the movie searchbar object
@@ -129,7 +171,7 @@ const searchEl = document.querySelector("#srch-title");
 async function searchOMDB() {
   // Set up the search parameters
   const searchValue = searchEl.value;
-  const searchResult = omdbSearch + searchValue + omdbType + OMDbApiKey
+  const searchResult = omdbSearch + searchValue + omdbType + omdbApiKey
 
   // Start search
   const response = await axios.get(searchResult)

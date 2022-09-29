@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const axios = require('axios');
 // const { Post, User } = require('../models');
 // const withAuth = require('../utils/auth');
 
@@ -10,25 +11,30 @@ router.post('/', (req, res) => {
     res.render('main', { search: true })
 })
 
-router.get('/movie-details', (req, res) => {
-    const movieData = {
-        title: "Movie Title Placeholder", 
-        actor: "Movie Actors Placeholder", 
-        director: "Movie Directors Placeholder",
-        mpaRating: "MPA Rating Placeholder",
-        releaseDate: "Movie Release Date Placeholder",
-        reviewScore: "Movie Review Score Placeholder",
-        userReviewScore: "Movie User Review Score Placeholder",
-        genre: "Movie Genre Placeholder",
-        writer: "Movie Writers Placeholder",
-        plotSummary: "Movie Plot Summary Placeholder",
-        posterURL: "https://via.placeholder.com/480x720",
-        ytEmbed: "https://www.youtube.com/embed/C0DPdy98e4c"
-    }
+// Pull a specific review
+router.get('/reviews/:id', (req, res) => {
+    // reviewObj = Fetch for specific review based on id param
+    res.render('review', reviewObj);
+})
 
-    // res.send('index') // sends the index.html file from Public (not necessary anymore)
-    // res.render('main', { layout: 'index' });
-    res.render('movieDetails', { search: true, movieDetails: true, movieData }); // I no longer have to specify the layout, since the default layout is set above! I can still set specific layouts if desired
+router.get('/movie-details/:imdbID', async (req, res) => {
+    // movieData should be a fetch based on the omdbID param
+
+    // OMDB Key Variables
+    const omdbSearch = 'https://www.omdbapi.com/?i=' // change t to s if you want a list of similar movie names
+    const omdbApiKey = '&apikey=c26a6eef'
+    const omdbPlot = '&plot=full'
+
+    const searchValue = req.params.imdbID // Working
+    console.log(searchValue);
+
+    const searchResult = omdbSearch + searchValue + omdbPlot + omdbApiKey
+
+    movieData = await axios.get(searchResult)
+    movieData = movieData.data;
+    console.log(movieData) // Working
+
+    res.render('movieDetails', { search: true, movieDetails: true, movieData }); 
 });
 
 // User profile page

@@ -1,7 +1,7 @@
 {{!-- Search Bar --}}
 
 {{!-- Modal that pulls data from omdb search --}}
-<main class="is-fullheight has-background-white"></main>
+<main class="is-fullheight has-background-white">
         <div class="is-6 p-4">
             <div class="card events-card">
                 <header class="card-header ">
@@ -11,13 +11,16 @@
                 </header>
             <div class="card-table">
             <table class="table is-fullwidth is-striped">
-                <tbody>
-                    <tr>
+                <tbody id="table-body">
+
+                    <i class="fa fa-bell-o">
+                    {{!-- <tr>
                         <td width="5%"><i class="fa fa-bell-o"></i></td>
                         <td>Star Wars: Episode IV - A New Hope</td>
                         <td>Released: 1977</td>
                         <td class="level-right"><a class="button is-small is-info" >View Movie Details</a></td>
                     </tr>
+
                     <tr>
                         <td width="5%"><i class="fa fa-bell-o"></i></td>
                         <td>Star Wars: Episode V - The Empire Strikes Back</td>
@@ -29,7 +32,7 @@
                         <td>'Star Wars: Episode VI - Return of the Jedi'</td>
                         <td>Released: 1983</td>
                         <td class="level-right"><a class="button is-small is-info">View Movie Details</a></td>
-                    </tr>
+                    </tr> --}}
                     {{!-- {{>results}} --}}
                 </tbody>
             </table>

@@ -15,37 +15,9 @@ Movie.init(
         type: DataTypes.STRING,
         allowNull: false,
       },
-      actors: {
+      imdb_id: {
         type: DataTypes.STRING,
-        allowNull: false,
-      },
-      director: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      rated: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      }, 
-      release_date: {
-        type: DataTypes.DATE,
-        allowNull: false,
-      },
-      imdb_score: {
-        type: DataTypes.DECIMAL,
-        allowNull: false,
-      },
-      genre: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      writers: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      plot_summary: {
-        type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
       }
     },
     {

@@ -1,4 +1,4 @@
-// ---------- Navigation Bar ---------- //
+// ----------- Navigation Bar ----------- //
 
 // Add navbar functionality
 document.addEventListener('DOMContentLoaded', () => {

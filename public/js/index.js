@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-
+// Animation JS
 
 
 

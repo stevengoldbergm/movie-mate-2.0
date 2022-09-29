@@ -160,7 +160,7 @@ function postSearchResults(searchData) {
     const buttonEl = document.createElement('a');
         buttonEl.classList.add('button', 'is-small', 'is-info');
         buttonEl.setAttribute('imdb-id', imdbID);
-        buttonEl.innerHTML = 'View Movie Details';
+        buttonEl.innerHTML = 'Movie Details';
         buttonEl.setAttribute('href', `/movie-details/${imdbID}`)
 
     buttonBoxEl.append(buttonEl);

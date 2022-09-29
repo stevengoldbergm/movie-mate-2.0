@@ -44,7 +44,7 @@ html,body {
 }
 
 .is-fullheight {
-    height: 100vh;
+    height: 100%;
 }
 
 .is-fullwidth {
@@ -59,4 +59,10 @@ html,body {
 .has-border-bottom {
     border: 1px, solid, grey;
     color: red;
+}
+
+.is-bottom {
+    margin-top: auto;
+    /* position: absolute;
+    bottom: 0; */
 }

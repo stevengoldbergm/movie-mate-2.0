@@ -3,8 +3,12 @@ const router = require('express').Router();
 // const withAuth = require('../utils/auth');
 
 router.get('/', (req, res) => {
-    res.render('main', { search: true })
+    res.render('main', { search: true})
 });
+
+router.post('/', (req, res) => {
+    res.render('main', { search: true })
+})
 
 router.get('/movie-details', (req, res) => {
     const movieData = {

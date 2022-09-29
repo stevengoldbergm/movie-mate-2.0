@@ -3,8 +3,7 @@ const router = require('express').Router();
 // const withAuth = require('../utils/auth');
 
 router.get('/', (req, res) => {
-    let searchData;
-    res.render('main', { search: true, searchData })
+    res.render('main', { search: true})
 });
 
 router.post('/', (req, res) => {

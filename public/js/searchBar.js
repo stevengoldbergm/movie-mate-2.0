@@ -104,17 +104,8 @@ async function fillSearch (event) {
   const searchData = await searchOMDB();
   console.log(searchData); // Working
 
-  // Reload the page with new data
-  // Might be literally impossible. DOM build may be required. -__-
-
-//   axios
-//   .get('/', {
-//     search: false,
-//     searchData,
-//   })
-//   .then((res) => {
-//     console.log('this sucks')
-//   });
+  // Build out search results with DOM
+  
 
 }
 

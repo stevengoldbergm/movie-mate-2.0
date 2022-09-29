@@ -1,13 +1,6 @@
 [
     {
-        "movie_name": "The Terminator",
-        "actors": "Arnold Schwarzenegger, Linda Hamilton, Michael Biehn",
-        "director": "James Cameron",
-        "rated": "R",
-        "release_date": "October 26, 1984",
-        "imdb_score": 8.1,
-        "genre": "Action, Sci-Fi",
-        "writers": "James Cameron, Gale Anne Hurd, William Wisher",
-        "plot_summary": "Sample plot summary - max character"
+        "movie_name": "Die Hard",
+        "imdb_id": "tt0095016"
     }
 ]

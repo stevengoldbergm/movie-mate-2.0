@@ -34,7 +34,17 @@ router.get('/movie-details/:imdbID', async (req, res) => {
     movieData = movieData.data;
     console.log(movieData) // Working
 
-    res.render('movieDetails', { search: true, movieDetails: true, movieData }); 
+    // Pull Rotten Tomatoes from movieData.Ratings
+    rtScore = movieData.Ratings[1]
+    if (rtScore) {
+        rtScore = JSON.stringify(rtScore.Value)
+    } else {
+        rtScore = "N/A"
+    }
+
+    // console.log(rtScore.Value) // Working
+
+    res.render('movieDetails', { search: true, movieDetails: true, movieData, rtScore }); 
 });
 
 // User profile page

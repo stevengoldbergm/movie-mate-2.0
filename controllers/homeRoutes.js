@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const axios = require('axios');
 // const { Post, User } = require('../models');
 // const withAuth = require('../utils/auth');
 
@@ -10,25 +11,66 @@ router.post('/', (req, res) => {
     res.render('main', { search: true })
 })
 
-router.get('/movie-details', (req, res) => {
-    const movieData = {
-        title: "Movie Title Placeholder", 
-        actor: "Movie Actors Placeholder", 
-        director: "Movie Directors Placeholder",
-        mpaRating: "MPA Rating Placeholder",
-        releaseDate: "Movie Release Date Placeholder",
-        reviewScore: "Movie Review Score Placeholder",
-        userReviewScore: "Movie User Review Score Placeholder",
-        genre: "Movie Genre Placeholder",
-        writer: "Movie Writers Placeholder",
-        plotSummary: "Movie Plot Summary Placeholder",
-        posterURL: "https://via.placeholder.com/480x720",
-        ytEmbed: "https://www.youtube.com/embed/C0DPdy98e4c"
-    }
+// Pull a specific review
+router.get('/reviews/:id', (req, res) => {
+    // reviewObj = Fetch for specific review based on id param
+    res.render('review', reviewObj);
+})
 
-    // res.send('index') // sends the index.html file from Public (not necessary anymore)
-    // res.render('main', { layout: 'index' });
-    res.render('movieDetails', { search: true, movieDetails: true, movieData }); // I no longer have to specify the layout, since the default layout is set above! I can still set specific layouts if desired
+router.get('/movie-details/:imdbID', async (req, res) => {
+    // ---------- Search OMDB for data ---------- //
+
+    // OMDB Key Variables
+    const omdbSearch = 'https://www.omdbapi.com/?i=' // change t to s if you want a list of similar movie names
+    const omdbApiKey = '&apikey=c26a6eef'
+    const omdbPlot = '&plot=full'
+
+    const searchValue = req.params.imdbID // Working
+    console.log(searchValue);
+
+    const searchResult = omdbSearch + searchValue + omdbPlot + omdbApiKey
+
+    movieData = await axios.get(searchResult)
+    movieData = movieData.data;
+    // console.log(movieData) // Working
+
+    // Pull Rotten Tomatoes from movieData.Ratings
+    rtScore = movieData.Ratings[1]
+    if (rtScore) {
+        rtScore = JSON.stringify(rtScore.Value)
+        rtScore = rtScore.substring(1, 4)
+    } else {
+        rtScore = "N/A"
+    }
+    // console.log(rtScore.Value) // Working
+
+    // ---------- Search Youtube for trailer ---------- //
+
+    // Youtube Search Variables
+    const youTubeApiKey = 'AIzaSyArL85QacNinNMsTR0SLDijTFsPP8JkT0s'
+    // var youTubeApiKey = 'AIzaSyArL85QacNinNMsTR0SLDijTFsPP8JkT0s' // Steve's Key
+    const ytSearch = 'https://youtube.googleapis.com/youtube/v3/search?q='
+    const plusTrailer = " movie trailer"
+    const ytApiKey = '&key=AIzaSyArL85QacNinNMsTR0SLDijTFsPP8JkT0s'
+    const ytPart = '&part=snippet'
+    const ytType = '&type=video'
+    const ytResults = '&maxResults=1'
+    const ytEmbedBase = 'https://www.youtube.com/embed/'
+    const title = movieData.Title
+    const year = movieData.Year
+    // Define youtube search
+    var ytSearchResult = ytSearch + title + " " + year + plusTrailer + ytPart + ytType + ytResults + ytApiKey
+
+    // Fetch youtube data
+    const ytResult = await axios.get(ytSearchResult)
+    const ytEmbedId = ytResult.data.items[0].id.videoId
+    const ytEmbed = ytEmbedBase + ytEmbedId;
+
+    console.log('\n\ndata.items:',ytResult.data.items[0].id.videoId,'\n\n');
+    // console.log(ytResult);
+    // const ytEmbed = 
+
+    res.render('movieDetails', { search: false, movieDetails: true, movieData, rtScore, ytEmbed }); 
 });
 
 // User profile page

@@ -47,6 +47,10 @@ html,body {
     height: 100vh;
 }
 
+.is-fullwidth {
+    width: 100vw;
+}
+
 .max {
     max-width: 640px;
     max-height: 360px;

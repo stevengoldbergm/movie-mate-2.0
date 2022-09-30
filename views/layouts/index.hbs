@@ -20,21 +20,21 @@
 
 <body class="has-background-white">
 
-    {{>navbar}}
+    {{> navbar }}
 
      <!-- Add 3 img tags. Position = absolute top, left, and right. All images are movie theatre banners -->
     <header>
-        <section class="background has-background-info hero has-text-centered">
-            <div class="hero-body">
-                <div class="container">
-                    
-                    {{#if search}}
-                        {{> searchbar }}
-                    {{/if}}
+      <section class="background has-background-info hero has-text-centered">
+        <div class="hero-body">
+          <div class="container">
+              
+            {{#if search}}
+                {{> searchbar }}
+            {{/if}}
 
-                </div>
-            </div>
-          </section>
+          </div>
+        </div>
+      </section>
     </header>
     {{{body}}}
 

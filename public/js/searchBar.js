@@ -5,13 +5,13 @@ document.querySelector("#srch-form").addEventListener('submit', mainSearch);
 
 // Search Form Function
 async function mainSearch(event) {
-    // Stop refresh 
-    event.preventDefault();
+  // Stop refresh 
+  event.preventDefault();
 
-    // Pull the search data from OMDB
-    const searchData = await searchOMDB();
-    console.log(searchData);
-    postSearchResults(searchData);
+  // Pull the search data from OMDB
+  const searchData = await searchOMDB();
+  console.log(searchData);
+  postSearchResults(searchData);
 
 }
 

@@ -38,11 +38,13 @@
     </header>
     {{{body}}}
 
-    {{#if movieDetails}}
+    {{>footerDetails}}
+
+    {{!-- {{#if movieDetails}}
         {{>footerDetails}}
     {{else}}
         {{>footer}}
-    {{/if}}
+    {{/if}} --}}
 
 
 <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>

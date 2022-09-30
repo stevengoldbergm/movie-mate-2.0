@@ -14,7 +14,7 @@ const loginFormHandler = async (event) => {
 
     if (response.ok) {
       // If successful, redirect the browser to the profile page
-      // document.location.replace('/profile');
+      document.location.replace('/profile');
       console.log('api response ok')
     } else {
       alert(response.statusText);

@@ -1,21 +1,28 @@
 const router = require('express').Router();
 const axios = require('axios');
+const { json } = require('express');
+const withAuth = require('../utils/auth')
+const apiRoutes = require('./api')
+router.use('/api', apiRoutes)
 // const { Post, User } = require('../models');
 // const withAuth = require('../utils/auth');
 
 router.get('/', (req, res) => {
-    res.render('main', { search: true})
+    res.render('main', { search: true, loggedIn: req.session.logged_in})
 });
 
-router.post('/', (req, res) => {
-    res.render('main', { search: true })
+// Pull a specific review
+
+router.get('/review', (req, res) => {
+    res.render('review', {layout: 'user', loggedIn: req.session.logged_in});
 })
 
-// Pull a specific review
-router.get('/reviews/:id', (req, res) => {
-    // reviewObj = Fetch for specific review based on id param
-    res.render('review', reviewObj);
-})
+// Pull a specific movie's reviews
+router.get('/reviews/:imdbId', async (req, res) => {
+
+
+    res.render('review', {layout: 'user', loggedIn: req.session.logged_in});
+});
 
 router.get('/movie-details/:imdbID', async (req, res) => {
     // ---------- Search OMDB for data ---------- //
@@ -70,22 +77,22 @@ router.get('/movie-details/:imdbID', async (req, res) => {
     // console.log(ytResult);
     // const ytEmbed = 
 
-    res.render('movieDetails', { search: false, movieDetails: true, movieData, rtScore, ytEmbed }); 
+    res.render('movieDetails', { search: false, movieDetails: true, movieData, rtScore, ytEmbed, loggedIn: req.session.logged_in, imdbID: req.params.imdbID }); 
 });
 
 // User profile page
-router.get('/profile', (req, res) => {
-    res.render('profile', { layout: 'user', search: false,  })
+router.get('/profile', withAuth, (req, res) => {
+    res.render('profile', { layout: 'user', search: false, loggedIn: req.session.logged_in  })
 });
 
 // User sign-up page
 router.get('/sign-up', (req, res) => {
-    res.render('signUp', { layout: 'user', search: false })
+    res.render('signUp', { layout: 'user', search: false, loggedIn: req.session.logged_in })
 });
 
 // User login page
 router.get('/login', (req, res) => {
-    res.render('login', { layout: 'user', search: false })
+    res.render('login', { layout: 'user', search: false, loggedIn: req.session.logged_in })
 });
 
 module.exports = router;

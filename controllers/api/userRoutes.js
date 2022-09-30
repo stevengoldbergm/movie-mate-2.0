@@ -88,9 +88,8 @@ router.post('/login', async (req,res) => {
     }
     // Password and email match, create session, set session user id and set login true
     req.session.save(() => {
-      req.session.user_id = userData.id;
       req.session.logged_in = true;
-      res.json({ message: 'Sucessfully logged in!'});
+      res.json({ user: userData, message: 'Sucessfully logged in!'});
     })
     
   } catch (err) {

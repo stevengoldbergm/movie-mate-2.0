@@ -20,64 +20,9 @@ router.get('/review', (req, res) => {
 // Pull a specific movie's reviews
 router.get('/reviews/:imdbId', async (req, res) => {
 
-    try {
-    const movieData = await Movie.findOne({
-        where: {
-        imdb_id: req.params.imdbId
-        },
-        include: [{model: Review}],
-    });
 
-    console.log(movieData);
-
-    res.status(200).json(movieData)
-
-    // if (!movieData) {
-    //     res.status(404).json({ message: 'No movie found with this id!' });
-    //     return;
-    // }
-
-    // res.status(200).json(movieData);
-
-    } catch (err) {
-    res.status(500).json(err);
-    }
-
-    // console.log(movieData)
-    // // Find Movie ID
-    // console.log(`/api/movies/${req.params.imdbId}\n\n`)
-    
-    // const movieId = await axios({
-    //     method: 'get',
-    //     url: '/api/movies/' + req.params.imdbId,
-    //     responseType: json
-    // })
-
-// try {
-
-//         const movieId = await axios('/api/movies/' + req.params.imdbId);
-
-//     console.log(movieId)
-// } catch (err) {
-//     res.status(500).json(err);
-// }
-
-    // let movieId = router.get(`/api/movies/${req.params.imdbId}`, async (req, res) => {
-    //     res.json(movieId);
-    // });
-
-    // console.log(movieId);
-    // movieId = movieId.id;
-    // console.log(movieId);
-
-    // Find Movie Reviews using ID
-    // let movieReviews = await axios.get(`api/reviews/${movieId}`);
-    // console.log(`\n\n${movieReviews}\n\n`);
-
-    // res.json(movieReviews)
-
-    // res.render('review', {layout: 'user', reviewObj, loggedIn: req.session.logged_in});
-})
+    res.render('review', {layout: 'user', loggedIn: req.session.logged_in});
+});
 
 router.get('/movie-details/:imdbID', async (req, res) => {
     // ---------- Search OMDB for data ---------- //

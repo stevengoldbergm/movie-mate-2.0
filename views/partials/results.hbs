@@ -1,0 +1,14 @@
+{{!-- Generate search result row --}}
+{{#each results as |result|}}
+    <tr>
+        <td width="5%"><i class="fa fa-bell-o"></i></td>
+        <td>{{result.Title}}</td>
+        <td>Released: {{result.Year}}</td>
+        <td class="level-right">
+            <a class="button is-small is-info" imdb-ID={{result.imdbID}}>View Movie Details</a>
+        </td>
+    </tr>
+{{/each}}
+
+{{!-- If error, check result.imdbID for quotes. --}}
+

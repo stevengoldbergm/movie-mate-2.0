@@ -2,7 +2,7 @@
 html,body {
     margin:0;
     padding:0;
-    overflow-x: visible;
+    overflow-x: hidden;
     }
 
 .tangerine {
@@ -44,7 +44,11 @@ html,body {
 }
 
 .is-fullheight {
-    height: 100vh;
+    height: 100%;
+}
+
+.is-fullwidth {
+    width: 100vw;
 }
 
 .max {
@@ -55,4 +59,10 @@ html,body {
 .has-border-bottom {
     border: 1px, solid, grey;
     color: red;
+}
+
+.is-bottom {
+    margin-top: auto;
+    /* position: absolute;
+    bottom: 0; */
 }

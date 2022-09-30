@@ -1,8 +1,8 @@
 {{!-- navbar start --}}
-<section class="hero is-white is-fullheight-with-navbar block">
-    <div class="hero-head">
+<section class="hero is-white is-fullheight-with-navbar is-fullheight block has-background-info">
+    <div class="hero-head has-background-white">
         <nav class="navbar card">
-            <div class="container pl-3">
+            <div class="container pl-3 is-fullwidth">
                 <div class="navbar-brand is-size-4 p-1">
                     <a class="navbar-item p-3" href="/">
                         <h1 class="title tangerine has-text-info animate__animated animate__rubberband p-3">
@@ -21,22 +21,30 @@
                         <span aria-hidden="true"></span>
                     </span>
                 </div>
-            </div>
-            <div id="navbarMenuHeroB" class="navbar-menu">
+            <div id="navbarMenuHeroB" class="navbar-menu has-text-right">
                 <div class="navbar-end">
-                <a class="navbar-item" href="/">
-                    Movie Search
-                </a>
-                {{!-- Hide if signed in --}}
-                <a class="navbar-item" href="/login">
-                    Login
-                </a>
-                <a class="navbar-item" href="/sign-up">
-                    Sign Up
-                </a>
-                <a class="navbar-item" href="/profile">
-                    Profile
-                </a>
+                    <a class="navbar-item" href="/">
+                        Movie Search
+                    </a>
+                    {{!-- Hide if signed in --}}
+                    {{!-- {{#if loggedIn}} --}}
+                        {{!--                     
+                        <a class="navbar-item" href="/logout">
+                            Logout
+                        </a>
+                        --}}
+                    {{!-- {{#else}} --}}
+                    <a class="navbar-item" href="/login">
+                        Login
+                    </a>
+                    <a class="navbar-item" href="/sign-up">
+                        Sign Up
+                    </a>
+                    {{!-- {{/if}} --}}
+                    <a class="navbar-item" href="/profile">
+                        Profile
+                    </a>
+                </div>
             </div>
         </nav>
     </div>

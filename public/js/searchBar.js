@@ -5,13 +5,13 @@ document.querySelector("#srch-form").addEventListener('submit', mainSearch);
 
 // Search Form Function
 async function mainSearch(event) {
-    // Stop refresh 
-    event.preventDefault();
+  // Stop refresh 
+  event.preventDefault();
 
-    // Pull the search data from OMDB
-    const searchData = await searchOMDB();
-    console.log(searchData);
-    postSearchResults(searchData);
+  // Pull the search data from OMDB
+  const searchData = await searchOMDB();
+  console.log(searchData);
+  postSearchResults(searchData);
 
 }
 
@@ -24,7 +24,7 @@ dropDownMenuContent.addEventListener("click", fillSearch);
 // Generate Search History on start-up
 function fillHistory() {
   let keys = Object.keys(localStorage);
-//   console.log(keys); // Working
+  // console.log(keys); // Working
 
   for (i = 0; i < keys.length; i++) {
     // Make a new a object
@@ -41,94 +41,43 @@ function fillHistory() {
 
 // Use search history buttons to enter search value, then pull movie data
 async function fillSearch (event) {
-    // Don't add "Clear History" to search bar on click!
-    if(!event.target.textContent || (event.target.textContent.trim() == "Clear History")) {
-        return;
-    }
+  // Don't add "Clear History" to search bar on click!
+  if(!event.target.textContent || (event.target.textContent.trim() == "Clear History")) {
+      return;
+  }
 
-    // console.log(event) // Working
-    // console.log(event.target) // Working
-    // console.log(event.target.textContent) // Working
+  // console.log(event) // Working
+  // console.log(event.target) // Working
+  // console.log(event.target.textContent) // Working
 
-    if (!event.target.value) {
-        searchEl.value = event.target.textContent;
-    } 
-    const searchData = await searchOMDB();
-    console.log(searchData); // Working
+  if (!event.target.value) {
+      searchEl.value = event.target.textContent;
+  } 
+  const searchData = await searchOMDB();
+  // console.log(searchData); // Working
 
-    postSearchResults(searchData);
-//     // Generate results on screen
-//     // Select Elements
-//     const resultTableEl = document.querySelector('#search-results')
-//     const table = document.querySelector('#table-body');
-    
-//     // Remove all child elements if they exist
-//     removeChildren(table);
+  // Generate results in view
+  postSearchResults(searchData);
 
-//     // Reveal results table
-//     resultTableEl.classList.remove('is-hidden');
-
-//     // Build out search results with DOM
-//     searchData.forEach((movie) => {
-//     console.log('Starting')
-
-//     // console.log(movie) // working
-//     const {Title, Year, imdbID} = movie;
-//     // console.log(Title, Year, imdbID); // Working
-
-//     // Create row element
-//     const rowEl = document.createElement('tr');
-//     console.log(rowEl);
-
-//     // create spacer element
-//     const spacerEl = document.createElement('td');
-//         spacerEl.style.width = "5%";
-//     const spacerImage = document.createElement('i');
-//         spacerImage.classList.add('fa', 'fa-bell-o');
-
-//     spacerEl.append(spacerImage);
-
-//     // Create Title element
-//     const titleEl = document.createElement('td');
-//         titleEl.innerHTML = Title;
-
-//     // Create Year element
-//     const yearEl = document.createElement('td');
-//         yearEl.innerHTML = `Released: ${Year}` 
-
-//     // Create redirect button
-//     const buttonBoxEl = document.createElement('td');
-//         buttonBoxEl.classList.add('level-right');
-//     const buttonEl = document.createElement('a');
-//         buttonEl.classList.add('button', 'is-small', 'is-info');
-//         buttonEl.setAttribute('imdb-id', imdbID);
-//         buttonEl.innerHTML = 'View Movie Details';
-//         buttonEl.setAttribute('href', `/movie-details/${imdbID}`)
-
-//     buttonBoxEl.append(buttonEl);
-    
-//     // Append row to table
-//     rowEl.append(spacerEl, titleEl, yearEl, buttonBoxEl);
-//     table.append(rowEl);
-//   })
 }
 
 // Post search results
 function postSearchResults(searchData) {
-        // Generate results on screen
-    // Select Elements
-    const resultTableEl = document.querySelector('#search-results')
-    const table = document.querySelector('#table-body');
-    
-    // Remove all child elements if they exist
-    removeChildren(table);
+  // Generate results on screen
 
-    // Reveal results table
-    resultTableEl.classList.remove('is-hidden');
+  // Select Elements
+  const resultTableEl = document.querySelector('#search-results')
+  const table = document.querySelector('#table-body');
+  
+  // Remove all child elements if they exist
+  removeChildren(table);
 
-    // Build out search results with DOM
-    searchData.forEach((movie) => {
-    console.log('Starting')
+  // Reveal results table
+  resultTableEl.classList.remove('is-hidden');
+
+  // Build out search results with DOM
+  searchData.forEach((movie) => {
+    console.log('Building Results:')
 
     // console.log(movie) // working
     const {Title, Year, imdbID} = movie;
@@ -160,9 +109,10 @@ function postSearchResults(searchData) {
     const buttonEl = document.createElement('a');
         buttonEl.classList.add('button', 'is-small', 'is-info');
         buttonEl.setAttribute('imdb-id', imdbID);
-        buttonEl.innerHTML = 'View Movie Details';
+        buttonEl.innerHTML = 'Movie Details';
         buttonEl.setAttribute('href', `/movie-details/${imdbID}`)
-
+        
+    // Append button to button box
     buttonBoxEl.append(buttonEl);
     
     // Append row to table
@@ -173,9 +123,9 @@ function postSearchResults(searchData) {
 
 // Function to remove child elements
 function removeChildren(parent) {
-    while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
-    }
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
 }
 
 // Function to clear local storage/search history

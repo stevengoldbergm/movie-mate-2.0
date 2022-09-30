@@ -20,29 +20,31 @@
 
 <body class="has-background-white">
 
-    {{>navbar}}
+    {{> navbar }}
 
      <!-- Add 3 img tags. Position = absolute top, left, and right. All images are movie theatre banners -->
     <header>
-        <section class="background has-background-info hero has-text-centered pt-6">
-            <div class="hero-body">
-                <div class="container">
-                    
-                    {{#if search}}
-                        {{> searchbar }}
-                    {{/if}}
+      <section class="background has-background-info hero has-text-centered">
+        <div class="hero-body">
+          <div class="container">
+              
+            {{#if search}}
+                {{> searchbar }}
+            {{/if}}
 
-                </div>
-            </div>
-          </section>
+          </div>
+        </div>
+      </section>
     </header>
     {{{body}}}
 
-    {{#if movieDetails}}
+    {{>footerDetails}}
+
+    {{!-- {{#if movieDetails}}
         {{>footerDetails}}
     {{else}}
         {{>footer}}
-    {{/if}}
+    {{/if}} --}}
 
 
 <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>

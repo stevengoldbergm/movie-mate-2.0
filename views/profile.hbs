@@ -1,8 +1,8 @@
 <!-- side table -->
 <!-- <div class="container"> -->
-    <div class="columns p-4">
-        <div class="is-3 p-3">
-            <aside class="menu is-hidden-mobile">
+    <div class="columns p-4 has-background-white">
+        <div class="is-3 p-3 ">
+            <aside class="menu is-hidden-mobile ">
                 <p class="menu-label">
                     Profile
                 </p>
@@ -18,7 +18,7 @@
                 <div class="hero-body">
                     <div class="container is-flex is-flex-direction-row is-justify-content-space-between">
                         <h1 class="title">
-                            Hello, welcome to your profile!
+                            Hello, {{{user}}} welcome to your profile!
                         </h1>
                         <figure class="image is-128x128">
                             <img class="is-rounded" src="/imgs/placeholder_profile.jpeg">
@@ -49,6 +49,9 @@
                     
                 </div>
             </section>
+
+            {{!-- If Reviews, add Revies table --}}
+            {{!-- Should we add a "Search a movie, Make a review! element?" --}}
 
                 <div class="is-6">
                     <div class="card events-card">
@@ -112,9 +115,9 @@
                                 </table>
                             </div>
                         </div>
-                        <footer class="card-footer">
+                        {{!-- <footer class="card-footer">
                             <a href="#" class="card-footer-item">View All</a>
-                        </footer>
+                        </footer> --}}
                     </div>
                 </div>
             </div>

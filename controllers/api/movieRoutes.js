@@ -25,7 +25,8 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
-router.get('/:imdbId', async (req,res) => {
+router.get('/:imdbId',withAuth, async (req,res) => {
+  
   try {
     const movieData = await Movie.findOne({
       where: {
@@ -39,6 +40,7 @@ router.get('/:imdbId', async (req,res) => {
       return;
     }
     res.status(200).json(movieData);
+    console.log(withAuth)
   } catch (err) {
     res.status(500).json(err);
   }

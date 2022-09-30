@@ -15,6 +15,26 @@ router.get('/', async (req,res) => {
 }
 });
 
+// Get specific review based on movie ID
+router.get('/:movieId', async (req,res) => {
+  console.log(`\n\nmovieId: ${req.params.movieId}\n\n`)
+  try {
+    const reviewData = await Review.findOne({
+      where: {
+        movie_id: req.params.movieId
+      },
+    });
+
+    if (!reviewData) {
+      res.status(404).json({ message: 'No review found with this movie id!' });
+      return;
+    }
+    res.status(200).json(reviewData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.post('/', async (req, res) => {
   try {
     const newReview = await Review.create(req.body);

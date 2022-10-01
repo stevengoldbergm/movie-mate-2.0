@@ -35,6 +35,7 @@ router.post('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const userData = await User.findOne({
+      attributes: { exclude: ['password'] },
       where: {
         id: req.params.id,
       },

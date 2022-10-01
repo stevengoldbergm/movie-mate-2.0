@@ -74,10 +74,10 @@ const localData = async (imdbId) => {
             // console.log(user_id);
 
         const userData = await axios.get('/api/users/' + user_id);
-        // console.log(userData); // Working
+        console.log(userData); // Working
         const { data } = userData;
         const { username } = data;
-        // console.log(username); // Working
+        console.log(username); // Working
         
 
     });

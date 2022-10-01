@@ -89,11 +89,13 @@ const localData = async (imdbId) => {
             cardHeaderEl.classList.add("card-header", "is-flex", "is-justify-content-space-between");
         const userNameEl = document.createElement("p");
             userNameEl.classList.add("card-header-title");
+            userNameEl.innerHTML = `${username} says. . .`;
         const userRatingEl = document.createElement("p");
-            userRatingEl.classList.add("pt-3 pr-3 has-text-weight-bold has-text-right");   
+            userRatingEl.classList.add("pt-3", "pr-3", "has-text-weight-bold", "has-text-right");   
+            userRatingEl.innerHTML = `${review_score} out of 10`;
         
             // Append the header elements
-            cardHeaderEl.append(usernameEl, userRatingEl);
+            cardHeaderEl.append(userNameEl, userRatingEl);
 
         // Card Table has content box, table, table body, and table row
         const cardTableEl = document.createElement("div");
@@ -109,16 +111,38 @@ const localData = async (imdbId) => {
         // Spacer element has an i element
         const spacerEl = document.createElement("td");
         const imgEl = document.createElement("i");
+            imgEl.classList.add("fa", "fa-bell-o");
+            spacerEl.style.width = "5%";
             // Append image to spacer
             spacerEl.append(imgEl);
-
         const textEl = document.createElement("td");
+        textEl.innerHTML = review_text;
+ 
+        // Append the spacer/text to the table row
         tableRowEl.append(spacerEl, textEl);
 
+        // Append the row to the table
+        tableEl.append(tableRowEl);
+
+        // Append the table to the content
+        contentEl.append(tableEl);
+
+        // Append the content to the table base
+        cardTableEl.append(contentEl);
+
+        // Append everything to the card base
+        eventsCardEl.append(cardHeaderEl, cardTableEl, );
+        
         // Select the element to append all child elements
-        document.querySelector(".card-master");
-        
-        
+        const cardMaster = document.querySelector(".card-master");
+
+        // Create line break element
+        const breakEl = document.createElement("br");
+
+        // Append the card base to the Parent element
+        cardMaster.append(eventsCardEl, breakEl);
+
+        // You have to check these all again, and make sure that the data is in the elements.
 
         
 

@@ -41,6 +41,9 @@ const init = async () => {
     const writerEl = document.querySelector(".movie-writer");
         writerEl.innerHTML = "Writers  |   " + Writer;
 
+    // Pull Review Data
+
+    
 
 };
 

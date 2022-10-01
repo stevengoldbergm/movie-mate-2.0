@@ -71,9 +71,6 @@ const getReviews = async () => {
         tableBodyEl.append(tableRowEl);
     });
 
-
-    
-
 }
 
 getReviews();

@@ -80,7 +80,7 @@ router.get('/movie-details/:imdbID', async (req, res) => {
 
 // User profile page
 router.get('/profile', withAuth, (req, res) => {
-    res.render('profile', { layout: 'user', search: false, loggedIn: req.session.logged_in  })
+    res.render('profile', { layout: 'user', search: false, loggedIn: req.session.logged_in, email: req.session.email  })
 });
 
 // User sign-up page

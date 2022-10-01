@@ -45,12 +45,15 @@
                     <br> {{!line break}}
 
                     <section>
-                        <div class="is-6">
+                        <div class="card-master is-6">
+                            {{!-- Start DOM Generation Here --}}
                             <div class="card events-card"> 
-                                <header class="card-header">
+
+                                <header class="card-header is-flex is-justify-content-space-between">
                                     <p class="card-header-title">
-                                        Review 1
+                                        John Says. . .
                                     </p>
+                                    <p class="pt-3 pr-3 has-text-weight-bold has-text-right">10 out of 10</p>
                                 </header>
 
                                 <div class="card-table">
@@ -58,11 +61,12 @@
                                         <table class="table is-fullwidth">
                                             <tbody>
                                                 <tr>
-                                                    <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                                    <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet laudantium nisi adipisci molestiae inventore, laborum perferendis numquam error minus tenetur, ea animi modi provident ad sed asperiores alias non rem?</td>
-                                                    {{#if userID}}
-                                                    <td class="level-right"><a class="button is-small is-info"> Edit Review</a></td>
-                                                    {{/if}}
+                                                    <td width="5%">
+                                                        <i class="fa fa-bell-o"></i>
+                                                    </td>
+                                                    <td>
+                                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet laudantium nisi adipisci molestiae inventore, laborum perferendis numquam error minus tenetur, ea animi modi provident ad sed asperiores alias non rem?
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>                                    

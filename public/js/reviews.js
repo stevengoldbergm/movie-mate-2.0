@@ -78,6 +78,48 @@ const localData = async (imdbId) => {
         const { data } = userData;
         const { username } = data;
         console.log(username); // Working
+
+        // ---------- DOM Element Generation ---------- //
+        // Create card base
+        const eventsCardEl = document.createElement("div");
+            eventsCardEl.classList.add("card", "events-card");
+
+        // Header has two Paragraph tags
+        const cardHeaderEl = document.createElement("header")
+            cardHeaderEl.classList.add("card-header", "is-flex", "is-justify-content-space-between");
+        const userNameEl = document.createElement("p");
+            userNameEl.classList.add("card-header-title");
+        const userRatingEl = document.createElement("p");
+            userRatingEl.classList.add("pt-3 pr-3 has-text-weight-bold has-text-right");   
+        
+            // Append the header elements
+            cardHeaderEl.append(usernameEl, userRatingEl);
+
+        // Card Table has content box, table, table body, and table row
+        const cardTableEl = document.createElement("div");
+            cardTableEl.classList.add("card-table");
+        const contentEl = document.createElement("div");
+            contentEl.classList.add("content", "p-2");
+        const tableEl = document.createElement("table");
+            tableEl.classList.add("table", "is-fullwidth");
+        
+        // Table row has two table data elements
+        const tableRowEl = document.createElement("tr");
+        
+        // Spacer element has an i element
+        const spacerEl = document.createElement("td");
+        const imgEl = document.createElement("i");
+            // Append image to spacer
+            spacerEl.append(imgEl);
+
+        const textEl = document.createElement("td");
+        tableRowEl.append(spacerEl, textEl);
+
+        // Select the element to append all child elements
+        document.querySelector(".card-master");
+        
+        
+
         
 
     });

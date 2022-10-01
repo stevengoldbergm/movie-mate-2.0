@@ -1,7 +1,7 @@
 
 <!-- side table -->
 <!-- <div class="container"> -->
-    <div class="columns p-4 has-background-white">
+    {{!-- <div class="columns p-4 has-background-white">
         <div class="is-3 p-3">
             <aside class="menu is-hidden-mobile">
                 <p class="menu-label">
@@ -15,28 +15,170 @@
                     <li><a>Settings</a></li>
                 </ul>
             </aside>
-        </div>
-        <div class="column is-9">
-            <section class="hero is-info welcome is-small">
-                <div class="hero-body">
-                    <div class="container is-flex is-flex-direction-row is-justify-content-space-between">
-                        <div class="is-flex is-flex-direction-column">
-                            <h1 class="title movie-title"></h1>
-                            <p class="movie-actors"></p>
-                            <p class="movie-director"></p>
-                            <p class="movie-writer"></p>
-                            <p class="movie-rated"></p>
-                            <p class="movie-released"></p>
-                            <p class="movie-genre"></p>
+        </div> --}}
+
+<div class="hero has-background-white">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-9">
+                    <section class="hero is-info welcome is-small">
+                        <div class="hero-body">
+                            <div class="container is-flex is-flex-direction-row is-justify-content-space-between">
+                                <div class="is-flex is-flex-direction-column">
+                                    <h1 class="title movie-title"></h1>
+                                    <p class="movie-actors"></p>
+                                    <p class="movie-director"></p>
+                                    <p class="movie-writer"></p>
+                                    <p class="movie-rated"></p>
+                                    <p class="movie-released"></p>
+                                    <p class="movie-genre"></p>
+                                </div>
+
+                                <figure class="image">
+                                    <img class="movie-poster" src="">
+                                </figure>
+                            </div>
                         </div>
+                    </section>
 
-                        <figure class="image">
-                            <img class="movie-poster" src="">
-                        </figure>
-                    </div>
+                    <br> {{!line break}}
+
+                    <section>
+                        <div class="is-6">
+                            <div class="card events-card"> 
+                                <header class="card-header">
+                                    <p class="card-header-title">
+                                        Review 1
+                                    </p>
+                                </header>
+
+                                <div class="card-table">
+                                    <div class="content p-2">
+                                        <table class="table is-fullwidth">
+                                            <tbody>
+                                                <tr>
+                                                    <td width="5%"><i class="fa fa-bell-o"></i></td>
+                                                    <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet laudantium nisi adipisci molestiae inventore, laborum perferendis numquam error minus tenetur, ea animi modi provident ad sed asperiores alias non rem?</td>
+                                                    {{#if userID}}
+                                                    <td class="level-right"><a class="button is-small is-info"> Edit Review</a></td>
+                                                    {{/if}}
+                                                </tr>
+                                            </tbody>
+                                        </table>                                    
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <br> {{!line break}}
+
+                            {{!-- <div class="card events-card">
+                                <header class="card-header">
+                                    <p class="card-header-title">
+                                        Review 2
+                                    </p>
+                                </header>
+
+                                <div class="card-table">
+                                    <div class="content p-2">
+                                        <table class="table is-fullwidth">
+                                            <tbody>
+                                                <tr>
+                                                    <td width="5%"><i class="fa fa-bell-o"></i></td>
+                                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos natus rem doloribus impedit ipsa nisi aliquid obcaecati reprehenderit, amet facere. Provident sapiente ducimus dicta explicabo rerum tenetur distinctio tempora aperiam.</td>
+                                                    <td class="level-right"><a class="button is-small is-info" href="#"> Edit Review</a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>                                    
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br> {{!line break}}
+
+                            <div class="card events-card">
+                                <header class="card-header">
+                                    <p class="card-header-title">
+                                        Review 3
+                                    </p>
+
+                                </header>
+                                <div class="card-table">
+                                    <div class="content p-2">
+                                        <table class="table is-fullwidth">
+                                            <tbody>
+                                                <tr>
+                                                    <td width="5%"><i class="fa fa-bell-o"></i></td>
+                                                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, quidem! Rem optio id, ratione aperiam, provident unde vero corporis, minus incidunt recusandae ea explicabo animi maiores molestias voluptates accusamus reiciendis!</td>
+                                                    <td class="level-right"><a class="button is-small is-info" href="#"> Edit Review</a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>                                    
+                                </div>
+                            </div> --}}
+                        </div>
+                                    
+                        <br>
+                        
+                        {{#if loggedIn}}
+                        {{!-- Form Start --}}
+                        
+                        <form class="box" id="submit-review">
+                            <h1 class="py-2">Add a Review:</h1>
+                            <div class="field">
+                                <label class="label">
+                                    Score (1-10):
+                                </label>
+                                <div class="control">
+                                    <div class="select">
+                                        <select>
+                                            <option>Select dropdown</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label class="label">
+                                    Review:
+                                </label>
+                                <textarea class="textarea is-info" placeholder="Info textarea"></textarea>
+                            </div>
+                            <div class="field">
+                                <button class="button is-info is-fullwidth">Add Review</button>
+                            </div>
+                            {{else}}
+                            <div class="has-text-centered">
+                                <p class="is-size-7"> You must me logged in to post a review. 
+                                </p>
+                                <br>
+                                <a href="/login" class="has-text-info">
+                                    <button class="button is-info is-fullwidth">Log in!</button>
+                                </a>
+                                    
+                            </div>
+                            {{/if}}
+                        </form>
+                    </section>
                 </div>
-
-            </section>
+            </div>
+        </div>
+    </div>
+</div>
+{{!-- 
+        
 
 <br> {{!line break}}
 
@@ -117,4 +259,4 @@
         <button class="button is-info is-fullwidth">Add Review</button>
     </div>
         </div>
-    </div>
+    </div> --}}

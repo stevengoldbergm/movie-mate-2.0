@@ -23,9 +23,7 @@ const init = async () => {
     console.log(Genre);
     console.log(Writer);
 
-
-
-    // Add title from OMDB data
+    // Add data points to page
     const posterEl = document.querySelector(".movie-poster");
         posterEl.src = Poster;
     const titleEl = document.querySelector(".movie-title");
@@ -46,9 +44,9 @@ const init = async () => {
 
 };
 
-const omdbData = async (searchValue) => {
 // ---------- Search OMDB for data ---------- //
 
+const omdbData = async (searchValue) => {
     // OMDB Key Variables
     const omdbSearch = 'https://www.omdbapi.com/?i='
     const omdbApiKey = '&apikey=c26a6eef'
@@ -69,7 +67,6 @@ const omdbData = async (searchValue) => {
     }
 
     return movieData;
-
 }
 
 

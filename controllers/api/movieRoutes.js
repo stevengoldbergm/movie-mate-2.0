@@ -44,6 +44,25 @@ router.get('/:imdbId', async (req,res) => {
   }
 });
 
+// get movie by movie id
+router.get('/id/:movieId', async (req,res) => {
+  try {
+    const movieData = await Movie.findOne({
+      where: {
+        id: req.params.movieId
+      },
+    });
+
+    if (!movieData) {
+      res.status(404).json({ message: 'No movie found with this id!' });
+      return;
+    }
+    res.status(200).json(movieData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // I don't think we want movies to be deleted from our database
 // router.delete('/:id', withAuth, async (req, res) => {
 //   try {

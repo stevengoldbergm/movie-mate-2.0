@@ -16,12 +16,18 @@
             </aside>
         </div>
         <div class="column is-9">
-            <section class="hero is-info welcome is-small">
+            <section class="hero is-info is-small">
                 <div class="hero-body">
                     <div class="container is-flex is-flex-direction-row is-justify-content-space-between">
-                        <h1 class="title" >
-                            Hello, {{{email}}} welcome to your profile!
-                        </h1>
+                        <div class"container is-flex is-flex-direction-column">
+                            <h1 id="greeting" class="title" >
+                                Hello, {{{email}}} welcome to your profile!
+                            </h1>
+                            <h2 class="is-size-4">
+                                Welcome to your profile!
+                            </h2>
+                        </div>
+
                         <figure class="image is-128x128">
                             <img class="is-rounded" src="/imgs/placeholder_profile.jpeg">
                         </figure>
@@ -59,7 +65,7 @@
                     <div class="card events-card">
                         <header class="card-header">
                             <p class="card-header-title">
-                                Your Reviews
+                                Your Movie Reviews
                             </p>
                             <!-- <a href="#" class="card-header-icon">
                             </a> -->
@@ -67,52 +73,8 @@
                         <div class="card-table">
                             <div class="content">
                                 <table class="table is-fullwidth is-striped">
-                                    <tbody>
-                                        <tr>
-                                            <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                            <td>Lorum ipsum dolem aire</td>
-                                            <td class="level-right"><a class="button is-small is-info" href="#">View Full Review</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                            <td>Lorum ipsum dolem aire</td>
-                                            <td class="level-right"><a class="button is-small is-info" href="#">View Full Review</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                            <td>Lorum ipsum dolem aire</td>
-                                            <td class="level-right"><a class="button is-small is-info" href="#">View Full Review</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                            <td>Lorum ipsum dolem aire</td>
-                                            <td class="level-right"><a class="button is-small is-info" href="#">View Full Review</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                            <td>Lorum ipsum dolem aire</td>
-                                            <td class="level-right"><a class="button is-small is-info" href="#">View Full Review</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                            <td>Lorum ipsum dolem aire</td>
-                                            <td class="level-right"><a class="button is-small is-info" href="#">View Full Review</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                            <td>Lorum ipsum dolem aire</td>
-                                            <td class="level-right"><a class="button is-small is-info" href="#">View Full Review</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                            <td>Lorum ipsum dolem aire</td>
-                                            <td class="level-right"><a class="button is-small is-info" href="#">View Full Review</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                            <td>Lorum ipsum dolem aire</td>
-                                            <td class="level-right"><a class="button is-small is-info" href="#">View Full Review</a></td>
-                                        </tr>
+                                    <tbody id="table-body">
+                                        {{!-- DOM data goes here --}}
                                     </tbody>
                                 </table>
                             </div>

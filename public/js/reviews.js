@@ -42,10 +42,41 @@ const init = async () => {
         writerEl.innerHTML = "Writers  |   " + Writer;
 
     // Pull Review Data
+    localData(id)
 
-    
+
 
 };
+
+// ---------- Search Local Server for data ---------- //
+
+const localData = async (imdbId) => {
+    
+    let movie = await axios.get('/api/movies/' + imdbId);
+    let {id, imdb_id, movie_name, reviews} = movie.data;
+    
+    console.log(movie)
+    console.log(id)
+    console.log(imdb_id)
+    console.log(movie_name);
+    console.log(reviews);
+
+    // Get the user name from the user ID
+    reviews.forEach( async (review) => {
+        const {id, movie_id, review_score, review_text, user_id} = review;
+        console.log(id);
+        console.log(movie_id);
+        console.log(review_score);
+        console.log(review_text);
+        console.log(user_id);
+
+        const userData = await axios.get('/api/users/' + user_id);
+        console.log(userData);
+        
+
+    });
+}
+
 
 // ---------- Search OMDB for data ---------- //
 

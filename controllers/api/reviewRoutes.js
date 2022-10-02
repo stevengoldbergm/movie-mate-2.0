@@ -57,7 +57,10 @@ router.get('/user/:userId', async (req,res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const newReview = await Review.create(req.body);
+    const newReview = await Review.create({
+      ...req.body,
+      user_id:req.session.user_id
+    });
       // placeholder for use ID from session: user_id: req.session.user_id,
       res.status(200).json(newReview);
     } catch (err) {

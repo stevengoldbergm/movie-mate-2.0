@@ -15,7 +15,7 @@ router.get('/', async (req,res) => {
 }
 });
 
-router.post('/', withAuth, async (req, res) => {
+router.post('/',  async (req, res) => {
   try {
     const newMovie = await Movie.create(req.body)
      // placeholder for use ID from session: user_id: req.session.user_id,
@@ -25,7 +25,8 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
-router.get('/:imdbId', async (req,res) => {
+router.get('/:imdbId',withAuth, async (req,res) => {
+  
   try {
     const movieData = await Movie.findOne({
       where: {
@@ -39,6 +40,7 @@ router.get('/:imdbId', async (req,res) => {
       return;
     }
     res.status(200).json(movieData);
+    console.log(withAuth)
   } catch (err) {
     res.status(500).json(err);
   }

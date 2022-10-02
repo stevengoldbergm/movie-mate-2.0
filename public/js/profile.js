@@ -103,12 +103,6 @@ const getReviews = async () => {
 getReviews();
 
 
+// ---------- Edit Button Modal Controller ---------- //
 
-// Use Axios to fetch the SUM(review) of this user
-    // This probably needs a literal call in the back-end. Also I don't want to do it?
-
-// Use DOM to create the objects under Your Reviews, utilizing
- // Movie Title
- // Review Score
- // Review Substring? (10 letters + ...)
-
+document.getElementById

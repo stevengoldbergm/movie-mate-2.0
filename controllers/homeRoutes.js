@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const axios = require('axios');
 const { json } = require('express');
+const { User, Review } = require('../models');
 const withAuth = require('../utils/auth')
 const apiRoutes = require('./api')
 router.use('/api', apiRoutes)
@@ -94,8 +95,22 @@ router.get('/movie-details/:imdbID', async (req, res) => {
     };
 });
 
-// User profile page
-router.get('/profile', withAuth, (req, res) => {
+// // User profile page
+// router.get('/profile', withAuth, (req, res) => {
+//     res.render('profile', { layout: 'user', search: false, loggedIn: req.session.logged_in, email: req.session.email  })
+// });
+
+// test profile page
+router.get('/profile', withAuth, async (req, res) => {
+    console.log('testing');
+    const testData = await User.findOne({
+        where: {
+            email: req.session.email
+        }
+    });
+    console.log('\n\n\n', testData, '\n\n\n')
+
+
     res.render('profile', { layout: 'user', search: false, loggedIn: req.session.logged_in, email: req.session.email  })
 });
 

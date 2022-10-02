@@ -66,3 +66,8 @@ html,body {
     /* position: absolute;
     bottom: 0; */
 }
+
+.movie-poster {
+    max-height: 180px;
+    max-width: 120px;
+}

@@ -20,7 +20,6 @@ router.get('/review', (req, res) => {
 // Pull a specific movie's reviews
 router.get('/reviews/:imdbId', async (req, res) => {
 
-
     res.render('review', {layout: 'user', loggedIn: req.session.logged_in});
 });
 
@@ -28,12 +27,12 @@ router.get('/movie-details/:imdbID', async (req, res) => {
     // ---------- Search OMDB for data ---------- //
 
     // OMDB Key Variables
-    const omdbSearch = 'https://www.omdbapi.com/?i=' // change t to s if you want a list of similar movie names
+    const omdbSearch = 'https://www.omdbapi.com/?i=' // Search by imdbId
     const omdbApiKey = '&apikey=c26a6eef'
     const omdbPlot = '&plot=full'
 
     const searchValue = req.params.imdbID // Working
-    console.log(searchValue);
+    // console.log(searchValue); // Working
 
     const searchResult = omdbSearch + searchValue + omdbPlot + omdbApiKey
 
@@ -73,16 +72,15 @@ router.get('/movie-details/:imdbID', async (req, res) => {
     const ytEmbedId = ytResult.data.items[0].id.videoId
     const ytEmbed = ytEmbedBase + ytEmbedId;
 
-    console.log('\n\ndata.items:',ytResult.data.items[0].id.videoId,'\n\n');
-    // console.log(ytResult);
-    // const ytEmbed = 
+    // console.log('\n\ndata.items:',ytResult.data.items[0].id.videoId,'\n\n'); // Working
+    // console.log(ytResult); // Working
 
     res.render('movieDetails', { search: false, movieDetails: true, movieData, rtScore, ytEmbed, loggedIn: req.session.logged_in, imdbID: req.params.imdbID }); 
 });
 
 // User profile page
 router.get('/profile', withAuth, (req, res) => {
-    res.render('profile', { layout: 'user', search: false, loggedIn: req.session.logged_in  })
+    res.render('profile', { layout: 'user', search: false, loggedIn: req.session.logged_in, email: req.session.email  })
 });
 
 // User sign-up page
@@ -96,83 +94,3 @@ router.get('/login', (req, res) => {
 });
 
 module.exports = router;
-
-
-// ---------- Reference code ---------- //
-
-// router.get('/', async (req, res) => {
-//   try {
-//     // Get all posts and JOIN with user data
-//     const post = await Post.findAll({
-//       include: [
-//         {
-//           model: User,
-//           attributes: ['name'],
-//         },
-//       ],
-//     });
-
-//     // Serialize data so the template can read it
-//     const posts = postData.map((post) => post.get({ plain: true }));
-
-//     // Pass serialized data and session flag into template
-//     res.render('homepage', { 
-//       posts, 
-//       logged_in: req.session.logged_in 
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
-// router.get('/post/:id', async (req, res) => {
-//   try {
-//     const postData = await Post.findByPk(req.params.id, {
-//       include: [
-//         {
-//           model: User,
-//           attributes: ['name'],
-//         },
-//       ],
-//     });
-
-//     const post = postData.get({ plain: true });
-
-//     res.render('post', {
-//       ...post,
-//       logged_in: req.session.logged_in
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
-// // Use withAuth middleware to prevent access to route
-// router.get('/profile', withAuth, async (req, res) => {
-//   try {
-//     // Find the logged in user based on the session ID
-//     const userData = await User.findByPk(req.session.user_id, {
-//       attributes: { exclude: ['password'] },
-//       include: [{ model: Post }],
-//     });
-
-//     const user = userData.get({ plain: true });
-
-//     res.render('profile', {
-//       ...user,
-//       logged_in: true
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
-// router.get('/login', (req, res) => {
-//   // If the user is already logged in, redirect the request to another route
-//   if (req.session.logged_in) {
-//     res.redirect('/profile');
-//     return;
-//   }
-
-//   res.render('login');
-// });

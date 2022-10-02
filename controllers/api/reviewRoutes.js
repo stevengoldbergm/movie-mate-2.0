@@ -35,6 +35,26 @@ router.get('/:movieId', async (req,res) => {
   }
 });
 
+// Get all reviews based on user ID
+router.get('/user/:userId', async (req,res) => {
+  console.log(`\n\nuserId: ${req.params.userId}\n\n`)
+  try {
+    const reviewData = await Review.findAll({
+      where: {
+        user_id: req.params.userId
+      },
+    });
+
+    if (!reviewData) {
+      res.status(404).json({ message: 'No review found from this user id!' });
+      return;
+    }
+    res.status(200).json(reviewData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.post('/', async (req, res) => {
   try {
     const newReview = await Review.create(req.body);

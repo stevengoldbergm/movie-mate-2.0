@@ -4,5 +4,35 @@
         "movie_id": 1,
         "review_score": 7.3,
         "review_text": "Sample text of a movie review"
+    },
+    {
+        "user_id": 2,
+        "movie_id": 2,
+        "review_score": 7.8,
+        "review_text": "Sample text of a second movie review"
+    },
+    {
+        "user_id": 3,
+        "movie_id": 3,
+        "review_score": 7.3,
+        "review_text": "Sample text of another user's second movie review"
+    },
+    {
+        "user_id": 4,
+        "movie_id": 2,
+        "review_score": 7.3,
+        "review_text": "Sample text of a third review"
+    },
+    {
+        "user_id": 1,
+        "movie_id": 4,
+        "review_score": 7.8,
+        "review_text": "Sample text of a fourth movie review"
+    },
+    {
+        "user_id": 2,
+        "movie_id": 5,
+        "review_score": 7.3,
+        "review_text": "Sample text of another user's fifth movie review"
     }
 ]

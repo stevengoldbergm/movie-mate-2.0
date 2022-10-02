@@ -2,5 +2,21 @@
     {
         "movie_name": "Die Hard",
         "imdb_id": "tt0095016"
+    },
+    {
+        "movie_name": "Star Wars: Episode IV - A New Hope",
+        "imdb_id": "tt0076759"
+    },
+    {
+        "movie_name": "Star Wars: Episode V - The Empire Strikes Back",
+        "imdb_id": "tt0080684"
+    },
+    {
+        "movie_name": "Star Wars: Episode VI - Return of the Jedi",
+        "imdb_id": "tt0086190"
+    },
+    {
+        "movie_name": "Star Wars: Episode I - The Phantom Menace",
+        "imdb_id": "tt0120915"
     }
 ]

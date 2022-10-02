@@ -1,3 +1,4 @@
+
 const init = async () => {
     // Pull imdbId from URL
     const url = window.location.pathname;
@@ -47,6 +48,70 @@ const init = async () => {
 
 };
 
+// Get Review info from user inputs, check database for movie, if found create review linked by movie id, if error create new movie with IMDB ID and name then check database for movie id and create review linked by movie id
+const createReview = async (event) => {
+    event.preventDefault();
+    // Pull imdbId from URL
+    const url = window.location.pathname;
+    const id = url.substring(url.lastIndexOf('/') + 1);
+    console.log(id)
+    // Collect values from the login form
+    const review_text = document.querySelector('#review-text').value.trim();
+    const review_score = document.querySelector('#review-score').value.trim();
+    console.log(review_text)
+    console.log(review_score)
+    if (review_text && review_score) { 
+            try{
+      // Send a GET request to see if the movie is in our DB
+      const response = await axios.get('/api/movies/'+ id,{
+        params: {
+            imdb_id: id
+        }
+      });
+        const { data } = response;
+        const movie_id =data.id
+
+        // Create review linked to movie and user from session
+        const newReview = await fetch('/api/reviews', {
+          method: 'POST',
+          body: JSON.stringify({ movie_id, review_score, review_text }),
+          headers: { 'Content-Type': 'application/json' },
+        });
+        location.replace(url)
+    } catch { 
+        // let to be removed once movie name is defiend through imdb data on page
+        const movieData = await omdbData(id);
+        // console.log(movieData.Title)
+        movie_name = movieData.Title
+        // Create new movie if movie doesn't exist
+        const newMovie = await fetch('/api/movies',{
+            method: 'POST',
+            body: JSON.stringify({ movie_name, 'imdb_id':id }),
+            headers: { 'Content-Type': 'application/json' },
+        });
+
+        // Once movie is dynamically created get new id from database
+        const response = await axios.get('/api/movies/'+ id,{
+            params: {
+                imdb_id: id
+            }
+          });
+            const { data } = response;
+        //   console.log(data[0].id)
+            const movie_id =data.id
+ 
+      const newReview = await fetch('/api/reviews', {
+        method: 'POST',
+        body: JSON.stringify({ movie_id, review_score, review_text }),
+        headers: { 'Content-Type': 'application/json' },
+      });
+    //   console.log(newReview)
+    location.replace(url)
+}}};
+
+    document
+    .querySelector('#submit-review')
+    .addEventListener('click', createReview);
 // ---------- Search Local Server for data ---------- //
 
 const localData = async (imdbId) => {

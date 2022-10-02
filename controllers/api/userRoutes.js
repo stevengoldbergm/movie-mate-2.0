@@ -22,6 +22,7 @@ router.post('/', async (req, res) => {
     req.session.save(() => {
       req.session.user_id = newUser.id;
       req.session.logged_in = true;
+      req.session.email = req.body.email;
       res.status(200).json(newUser);
     })
 
@@ -119,7 +120,8 @@ router.post('/login', async (req,res) => {
   try {
     // getting user data from the database
     const userData = await User.findOne({where: {email: req.body.email}});
-    console.log(`User data:${userData}`)
+    console.log(`\n\n\nUser data:${userData}\n\n\n`)
+    console.log(`\n\n\nUser data:${userData}\n\n\n`)
     // errore for no user found
     if(!userData) {
       res.status(400).json({message: 'User not found. Please check email'});
@@ -134,8 +136,10 @@ router.post('/login', async (req,res) => {
     }
     // Password and email match, create session, set session user id and set login true
     req.session.save(() => {
+      req.session.user_id = userData.id;
       req.session.email = req.body.email; // Placeholder for user data variable
       req.session.logged_in = true;
+      
       res.json({ user: userData, message: 'Sucessfully logged in!'});
     })
     

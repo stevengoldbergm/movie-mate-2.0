@@ -21,8 +21,8 @@ router.post('/', async (req, res) => {
     
     req.session.save(() => {
       req.session.user_id = newUser.id;
-      req.session.email = req.body.email;
       req.session.logged_in = true;
+      req.session.email = req.body.email;
       res.status(200).json(newUser);
     })
 

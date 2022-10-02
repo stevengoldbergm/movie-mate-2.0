@@ -53,10 +53,6 @@ const init = async () => {
             console.log(err.response.headers);
         };
     };
-
-
-
-
 };
 
 // ---------- Search Local Server for data ---------- //
@@ -180,7 +176,6 @@ const localData = async (imdbId) => {
     
 }
 
-
 // ---------- Search OMDB for data ---------- //
 
 const omdbData = async (searchValue) => {
@@ -214,6 +209,5 @@ const omdbData = async (searchValue) => {
 
     return movieData;
 }
-
 
 init();

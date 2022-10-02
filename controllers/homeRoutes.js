@@ -19,7 +19,6 @@ router.get('/review', (req, res) => {
 
 // Pull a specific movie's reviews
 router.get('/reviews/:imdbId', async (req, res) => {
-
     res.render('review', {layout: 'user', loggedIn: req.session.logged_in});
 });
 

@@ -15,7 +15,7 @@ router.get('/', async (req,res) => {
 }
 });
 
-router.post('/', withAuth, async (req, res) => {
+router.post('/',  async (req, res) => {
   try {
     const newMovie = await Movie.create(req.body)
      // placeholder for use ID from session: user_id: req.session.user_id,

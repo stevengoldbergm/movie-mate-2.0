@@ -56,11 +56,11 @@ const createReview = async (event) => {
     const id = url.substring(url.lastIndexOf('/') + 1);
     console.log(id)
     // Collect values from the login form
-    // const reveiw_text = document.querySelector('#review-text').value.trim();
-    // const review_score = document.querySelector('#review-score').value.trim();
-    
-    // if (reveiw_text && review_score) { uncomment when text and score come from page
-        if(true) {
+    const review_text = document.querySelector('#review-text').value.trim();
+    const review_score = document.querySelector('#review-score').value.trim();
+    console.log(review_text)
+    console.log(review_score)
+    if (review_text && review_score) { 
             try{
       // Send a GET request to see if the movie is in our DB
       const response = await axios.get('/api/movies/'+ id,{
@@ -70,20 +70,21 @@ const createReview = async (event) => {
       });
         const { data } = response;
         const movie_id =data.id
-        // lets to be rmoved when review score and text const are defined in browser
-        let review_score = "6.8"
-        let review_text = "Best Christmas Movie around"
+
         // Create review linked to movie and user from session
         const newReview = await fetch('/api/reviews', {
           method: 'POST',
           body: JSON.stringify({ movie_id, review_score, review_text }),
           headers: { 'Content-Type': 'application/json' },
         });
+        location.replace(url)
     } catch { 
         // let to be removed once movie name is defiend through imdb data on page
-        const movie_name = 'Title'
+        const movieData = await omdbData(id);
+        // console.log(movieData.Title)
+        movie_name = movieData.Title
         // Create new movie if movie doesn't exist
-        const newMovie = await fetch('http://localhost:3001/api/movies',{
+        const newMovie = await fetch('/api/movies',{
             method: 'POST',
             body: JSON.stringify({ movie_name, 'imdb_id':id }),
             headers: { 'Content-Type': 'application/json' },
@@ -98,21 +99,16 @@ const createReview = async (event) => {
             const { data } = response;
         //   console.log(data[0].id)
             const movie_id =data.id
-        // let to be removed once movie name is defiend through imdb data on page
-            let review_score = "6.8"
-            let review_text = "Best Christmas Movie around"
+ 
       const newReview = await fetch('/api/reviews', {
         method: 'POST',
         body: JSON.stringify({ movie_id, review_score, review_text }),
         headers: { 'Content-Type': 'application/json' },
       });
     //   console.log(newReview)
-    }
-}};
-// init();
-// document
-//     .querySelector('#add-review')
-//     .addEventListener('click', createReview);
+    location.replace(url)
+}}};
+
     document
     .querySelector('#submit-review')
     .addEventListener('click', createReview);

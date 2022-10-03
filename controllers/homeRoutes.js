@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const axios = require('axios');
 const { json } = require('express');
+const { User, Review } = require('../models');
 const withAuth = require('../utils/auth')
 const apiRoutes = require('./api')
 router.use('/api', apiRoutes)
@@ -36,50 +37,81 @@ router.get('/movie-details/:imdbID', async (req, res) => {
 
     const searchResult = omdbSearch + searchValue + omdbPlot + omdbApiKey
 
-    movieData = await axios.get(searchResult)
-    movieData = movieData.data;
-    // console.log(movieData) // Working
+    try {
+        let movieData = await axios.get(searchResult);
+        movieData = movieData.data;
+        // console.log(movieData) // Working
 
-    // Pull Rotten Tomatoes from movieData.Ratings
-    rtScore = movieData.Ratings[1]
-    if (rtScore) {
-        rtScore = JSON.stringify(rtScore.Value)
-        rtScore = rtScore.substring(1, 4)
-    } else {
-        rtScore = "N/A"
-    }
-    // console.log(rtScore.Value) // Working
+        // Pull Rotten Tomatoes from movieData.Ratings
+        rtScore = movieData.Ratings[1]
+        if (rtScore) {
+            rtScore = JSON.stringify(rtScore.Value)
+            rtScore = rtScore.substring(1, 4)
+        } else {
+            rtScore = "N/A"
+        }
+        // console.log(rtScore.Value) // Working
 
-    // ---------- Search Youtube for trailer ---------- //
+        // ---------- Search Youtube for trailer ---------- //
 
-    // Youtube Search Variables
-    const youTubeApiKey = 'AIzaSyArL85QacNinNMsTR0SLDijTFsPP8JkT0s'
-    // var youTubeApiKey = 'AIzaSyArL85QacNinNMsTR0SLDijTFsPP8JkT0s' // Steve's Key
-    const ytSearch = 'https://youtube.googleapis.com/youtube/v3/search?q='
-    const plusTrailer = " movie trailer"
-    const ytApiKey = '&key=AIzaSyArL85QacNinNMsTR0SLDijTFsPP8JkT0s'
-    const ytPart = '&part=snippet'
-    const ytType = '&type=video'
-    const ytResults = '&maxResults=1'
-    const ytEmbedBase = 'https://www.youtube.com/embed/'
-    const title = movieData.Title
-    const year = movieData.Year
-    // Define youtube search
-    var ytSearchResult = ytSearch + title + " " + year + plusTrailer + ytPart + ytType + ytResults + ytApiKey
+        // Youtube Search Variables
+        const youTubeApiKey = 'AIzaSyArL85QacNinNMsTR0SLDijTFsPP8JkT0s'
+        // var youTubeApiKey = 'AIzaSyArL85QacNinNMsTR0SLDijTFsPP8JkT0s' // Steve's Key
+        const ytSearch = 'https://youtube.googleapis.com/youtube/v3/search?q='
+        const plusTrailer = " movie trailer"
+        const ytApiKey = '&key=AIzaSyArL85QacNinNMsTR0SLDijTFsPP8JkT0s'
+        const ytPart = '&part=snippet'
+        const ytType = '&type=video'
+        const ytResults = '&maxResults=1'
+        const ytEmbedBase = 'https://www.youtube.com/embed/'
+        const title = movieData.Title
+        const year = movieData.Year
+        // Define youtube search
+        var ytSearchResult = ytSearch + title + " " + year + plusTrailer + ytPart + ytType + ytResults + ytApiKey
 
-    // Fetch youtube data
-    const ytResult = await axios.get(ytSearchResult)
-    const ytEmbedId = ytResult.data.items[0].id.videoId
-    const ytEmbed = ytEmbedBase + ytEmbedId;
+        // Fetch youtube data
+        try {
+            const ytResult = await axios.get(ytSearchResult)
+            const ytEmbedId = ytResult.data.items[0].id.videoId
+            const ytEmbed = ytEmbedBase + ytEmbedId;
+    
+            // console.log('\n\ndata.items:',ytResult.data.items[0].id.videoId,'\n\n'); // Working
+            // console.log(ytResult); // Working
+    
+            res.render('movieDetails', { search: false, movieDetails: true, movieData, rtScore, ytEmbed, loggedIn: req.session.logged_in, imdbID: req.params.imdbID }); 
+        } catch (err) {
+            if (err.response) {
+                console.log(err.response.data);
+                console.log(err.response.status);
+                console.log(err.response.headers);
+            };
+        };
 
-    // console.log('\n\ndata.items:',ytResult.data.items[0].id.videoId,'\n\n'); // Working
-    // console.log(ytResult); // Working
-
-    res.render('movieDetails', { search: false, movieDetails: true, movieData, rtScore, ytEmbed, loggedIn: req.session.logged_in, imdbID: req.params.imdbID }); 
+    } catch (err) {
+        if (err.response) {
+            console.log(err.response.data);
+            console.log(err.response.status);
+            console.log(err.response.headers);
+        };
+    };
 });
 
-// User profile page
-router.get('/profile', withAuth, (req, res) => {
+// // User profile page
+// router.get('/profile', withAuth, (req, res) => {
+//     res.render('profile', { layout: 'user', search: false, loggedIn: req.session.logged_in, email: req.session.email  })
+// });
+
+// test profile page
+router.get('/profile', withAuth, async (req, res) => {
+    console.log('testing');
+    const testData = await User.findOne({
+        where: {
+            email: req.session.email
+        }
+    });
+    console.log('\n\n\n', testData, '\n\n\n')
+
+
     res.render('profile', { layout: 'user', search: false, loggedIn: req.session.logged_in, email: req.session.email  })
 });
 

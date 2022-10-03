@@ -14,7 +14,6 @@ async function mainSearch(event) {
   postSearchResults(searchData);
 
 }
-
 // ---------- Search History Dropdown ---------- //
 
 // Add event listeners to drop-down
@@ -29,7 +28,7 @@ function fillHistory() {
   for (i = 0; i < keys.length; i++) {
     // Make a new a object
     var newLink = document.createElement("a");
-    newLink.classList.add("dropdown-item");
+    newLink.classList.add("dropdown-item", "is-capitalized");
     newLink.textContent = keys[i].substring(11);
     // console.log(newLink.textContent); // Working
     // console.log(newLink); // Working
@@ -151,42 +150,50 @@ async function searchOMDB() {
   const searchResult = omdbSearch + searchValue + omdbType + omdbApiKey
 
   // Start search
-  const response = await axios.get(searchResult)
-  // console.log(response.data.Search); // Working
+  try {
+    const response = await axios.get(searchResult);
+    // console.log(response.data.Search); // Working
   
-  // Fetch Syntax
-    // const responseFetch = await fetch(searchResult);
-    // const data = await responseFetch.json();
-    // console.log(data.Search) // Working
-  
+    // Fetch Syntax
+      // const responseFetch = await fetch(searchResult);
+      // const data = await responseFetch.json();
+      // console.log(data.Search) // Working
+    
 
-  // Add History Button for search history
+    // Add History Button for search history
 
-  // Define Variables
-  var movieSave = searchEl.value
-  console.log("Movie save name: " + movieSave)
-  console.log("Storage Test: ", localStorage.getItem("MovieMate: " + movieSave), movieSave)
+    // Define Variables
+    var movieSave = searchEl.value.toLowerCase();
+    console.log("Movie save name: " + movieSave)
+    console.log("Storage Test: ", localStorage.getItem("MovieMate: " + movieSave), movieSave)
 
-  // Don't add history button if local storage already exists
-  if (!localStorage.getItem("MovieMate: " + movieSave)) {
-    // If no local storage, then:
-    localStorage.setItem("MovieMate: " + movieSave, movieSave)
-    console.log(localStorage.getItem("MovieMate: " + movieSave))  
+    // Don't add history button if local storage already exists
+    if (!localStorage.getItem("MovieMate: " + movieSave)) {
+      // If no local storage, then:
+      localStorage.setItem("MovieMate: " + movieSave, movieSave)
+      console.log(localStorage.getItem("MovieMate: " + movieSave))  
 
-    var newLink = document.createElement("a");
+      var newLink = document.createElement("a");
 
-    newLink.classList.add("dropdown-item");
-    newLink.textContent = searchEl.value;
-    console.log(newLink.textContent)
-    console.log(newLink)
-    console.log(dropDownMenuContent)
+      newLink.classList.add("dropdown-item", "is-capitalized");
+      newLink.textContent = searchEl.value;
+      console.log(newLink.textContent)
+      console.log(newLink)
+      console.log(dropDownMenuContent)
 
-    dropDownMenuContent.prepend(newLink);
-    }
+      dropDownMenuContent.prepend(newLink);
+      }
 
-  // Return list of movie objects based on search parameters
-  return response.data.Search;
-  // return data.Search; // Fetch return
+    // Return list of movie objects based on search parameters
+    return response.data.Search;
+    // return data.Search; // Fetch return
+  } catch (err) {
+    if (err.response) {
+        console.log(err.response.data);
+        console.log(err.response.status);
+        console.log(err.response.headers);
+    };
+  };
 }
 
 // ---------- Initialize the App ---------- //
